@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "975867735910",
+    "project_id": "railwayreservation-4354a",
+    "storage_bucket": "railwayreservation-4354a.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:975867735910:android:4a5144f35ccdf6cf3522a7",
+        "android_client_info": {
+          "package_name": "com.hitk.railwayreservation"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "975867735910-pn0lbkvi0fbf4eeolinpnkke64031hsa.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAME28P23vd7Jw17S8NzQ32btKIf88DwuM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "975867735910-pn0lbkvi0fbf4eeolinpnkke64031hsa.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
