@@ -1,5 +1,6 @@
 package com.hitk.railwayreservation.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -24,6 +25,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
+import com.hitk.railwayreservation.MainActivity;
 import com.hitk.railwayreservation.R;
 import com.hitk.railwayreservation.model.UserModel;
 
@@ -192,7 +194,10 @@ public class SignUpFragment extends Fragment {
                             //Make users database
                             FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(user);
 
-                            Navigation.findNavController(view).navigate(R.id.action_signUpFragment_to_homeFragment);
+                            startActivity(new Intent(getActivity(), MainActivity.class));
+                            getActivity().finishAffinity();
+
+
 
                             //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
 

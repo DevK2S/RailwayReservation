@@ -23,6 +23,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
+import com.hitk.railwayreservation.BoardingActivity;
+import com.hitk.railwayreservation.MainActivity;
 import com.hitk.railwayreservation.R;
 
 
@@ -116,7 +118,8 @@ public class LoginFragment extends Fragment {
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful())
                         {
-                            Navigation.findNavController(view).navigate(R.id.action_loginFragment_to_homeFragment);
+                            startActivity(new Intent(getActivity(), MainActivity.class));
+                            getActivity().finishAffinity();
                         }
                         else {
                             progressBar.setVisibility(View.INVISIBLE);
