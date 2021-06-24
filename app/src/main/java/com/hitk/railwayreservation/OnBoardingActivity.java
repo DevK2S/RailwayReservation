@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 import com.google.firebase.auth.FirebaseAuth;
 
-public class BoardingActivity extends AppCompatActivity {
+public class OnBoardingActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -15,13 +15,8 @@ public class BoardingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_boarding);
 
         if (FirebaseAuth.getInstance().getCurrentUser() != null) {
-            //Log.d(TAG, "onCreate: User already logged in");
-
-            //findViewById(R.id.loginScreenProgressBar).setVisibility(View.VISIBLE);
-            startActivity(new Intent(BoardingActivity.this, MainActivity.class));
+            startActivity(new Intent(OnBoardingActivity.this, MainActivity.class));
             finishAffinity();
-            //overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
         }
-
     }
 }

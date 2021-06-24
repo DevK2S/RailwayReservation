@@ -2,7 +2,7 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/nav_graph"
+    android:id="@+id/onboarding_nav_graph"
     app:startDestination="@id/loginFragment">
 
     <fragment
@@ -10,17 +10,15 @@
         android:name="com.hitk.railwayreservation.ui.LoginFragment"
         android:label="fragment_login"
         tools:layout="@layout/fragment_login" >
-
         <action
             android:id="@+id/action_loginFragment_to_signUpFragment"
             app:destination="@id/signUpFragment" />
     </fragment>
+    
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.hitk.railwayreservation.ui.SignUpFragment"
         android:label="fragment_sign_up"
         tools:layout="@layout/fragment_sign_up" >
-
     </fragment>
-
 </navigation>
