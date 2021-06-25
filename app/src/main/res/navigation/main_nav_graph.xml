@@ -9,9 +9,58 @@
         android:id="@+id/homeFragment"
         android:name="com.hitk.railwayreservation.ui.HomeFragment"
         android:label="fragment_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_addTrainFragment"
+            app:destination="@id/addTrainFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_bookFragment"
+            app:destination="@id/bookFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_removeTrainFragment"
+            app:destination="@id/removeTrainFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_balanceFragment"
+            app:destination="@id/balanceFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_viewFragment"
+            app:destination="@id/viewFragment" />
+    </fragment>
     <activity
         android:id="@+id/nav_logout"
         android:name="com.hitk.railwayreservation.OnBoardingActivity"
         android:label="BoardingActivity" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.hitk.railwayreservation.ui.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/bookFragment"
+        android:name="com.hitk.railwayreservation.ui.BookFragment"
+        android:label="fragment_book"
+        tools:layout="@layout/fragment_book" />
+    <fragment
+        android:id="@+id/balanceFragment"
+        android:name="com.hitk.railwayreservation.ui.BalanceFragment"
+        android:label="fragment_balance"
+        tools:layout="@layout/fragment_balance" />
+    <fragment
+        android:id="@+id/removeTrainFragment"
+        android:name="com.hitk.railwayreservation.ui.RemoveTrainFragment"
+        android:label="fragment_remove_train"
+        tools:layout="@layout/fragment_remove_train" />
+    <fragment
+        android:id="@+id/viewFragment"
+        android:name="com.hitk.railwayreservation.ui.ViewFragment"
+        android:label="fragment_view"
+        tools:layout="@layout/fragment_view" />
+    <fragment
+        android:id="@+id/addTrainFragment"
+        android:name="com.hitk.railwayreservation.ui.AddTrainFragment"
+        android:label="fragment_add_train"
+        tools:layout="@layout/fragment_add_train" />
 </navigation>

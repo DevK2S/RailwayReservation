@@ -1,5 +1,6 @@
 package com.hitk.railwayreservation.model
 
+import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
@@ -10,4 +11,4 @@ data class PassengerModel(
 	val phoneNumber: String = "",
 	val address: String = "",
 	val outstandingBalance: Double = 0.0,
-)
+):Parcelable
