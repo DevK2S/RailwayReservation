@@ -1,4 +1,4 @@
-package com.hitk.railwayreservation.ui;
+package com.hitk.railwayreservation.oboarding;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -21,10 +21,9 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
-import com.hitk.railwayreservation.MainActivity;
+import com.hitk.railwayreservation.main.MainActivity;
 import com.hitk.railwayreservation.R;
 import com.hitk.railwayreservation.model.PassengerModel;
-import com.hitk.railwayreservation.model.UserType;
 
 public class SignUpFragment extends Fragment {
 	
@@ -246,9 +245,7 @@ public class SignUpFragment extends Fragment {
 		String phoneNumber = phoneNumberEditText.getText().toString();
 		String address = addressEditText.getText().toString();
 		
-		PassengerModel passenger = new PassengerModel(UserType.PASSENGER, name, email, phoneNumber,
-		                                              address, 0);
-		
+		PassengerModel passenger = new PassengerModel(name, email, phoneNumber, address);
 		
 		FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(passenger)
 		                .addOnCompleteListener(setValueTask -> {

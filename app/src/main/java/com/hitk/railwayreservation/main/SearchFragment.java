@@ -1,4 +1,4 @@
-package com.hitk.railwayreservation.ui;
+package com.hitk.railwayreservation.main;
 
 import android.os.Bundle;
 

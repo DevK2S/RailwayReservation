@@ -1,66 +1,121 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/main_nav_graph.xml"
-    app:startDestination="@id/homeFragment">
-
-    <fragment
-        android:id="@+id/homeFragment"
-        android:name="com.hitk.railwayreservation.ui.HomeFragment"
-        android:label="fragment_home"
-        tools:layout="@layout/fragment_home" >
-        <action
-            android:id="@+id/action_homeFragment_to_searchFragment"
-            app:destination="@id/searchFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_addTrainFragment"
-            app:destination="@id/addTrainFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_bookFragment"
-            app:destination="@id/bookFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_removeTrainFragment"
-            app:destination="@id/removeTrainFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_balanceFragment"
-            app:destination="@id/balanceFragment" />
-        <action
-            android:id="@+id/action_homeFragment_to_viewFragment"
-            app:destination="@id/viewFragment" />
-    </fragment>
-    <activity
-        android:id="@+id/nav_logout"
-        android:name="com.hitk.railwayreservation.OnBoardingActivity"
-        android:label="BoardingActivity" />
-    <fragment
-        android:id="@+id/searchFragment"
-        android:name="com.hitk.railwayreservation.ui.SearchFragment"
-        android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
-    <fragment
-        android:id="@+id/bookFragment"
-        android:name="com.hitk.railwayreservation.ui.BookFragment"
-        android:label="fragment_book"
-        tools:layout="@layout/fragment_book" />
-    <fragment
-        android:id="@+id/balanceFragment"
-        android:name="com.hitk.railwayreservation.ui.BalanceFragment"
-        android:label="fragment_balance"
-        tools:layout="@layout/fragment_balance" />
-    <fragment
-        android:id="@+id/removeTrainFragment"
-        android:name="com.hitk.railwayreservation.ui.RemoveTrainFragment"
-        android:label="fragment_remove_train"
-        tools:layout="@layout/fragment_remove_train" />
-    <fragment
-        android:id="@+id/viewFragment"
-        android:name="com.hitk.railwayreservation.ui.ViewFragment"
-        android:label="fragment_view"
-        tools:layout="@layout/fragment_view" />
-    <fragment
-        android:id="@+id/addTrainFragment"
-        android:name="com.hitk.railwayreservation.ui.AddTrainFragment"
-        android:label="fragment_add_train"
-        tools:layout="@layout/fragment_add_train" />
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:id="@+id/main_nav_graph.xml"
+	app:startDestination="@id/homeFragment">
+	
+	<fragment
+		android:id="@+id/homeFragment"
+		android:name="com.hitk.railwayreservation.main.HomeFragment"
+		android:label="fragment_home"
+		tools:layout="@layout/fragment_home">
+		<action
+			android:id="@+id/action_homeFragment_to_nav_logout"
+			app:destination="@id/nav_logout"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+		<action
+			android:id="@+id/action_homeFragment_to_addTrainFragment"
+			app:destination="@id/addTrainFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+		<action
+			android:id="@+id/action_homeFragment_to_bookFragment"
+			app:destination="@id/bookFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+		<action
+			android:id="@+id/action_homeFragment_to_viewTicketsFragment"
+			app:destination="@id/viewTicketsFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+		<action
+			android:id="@+id/action_homeFragment_to_viewReportFragment"
+			app:destination="@id/viewReportFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+		<action
+			android:id="@+id/action_homeFragment_to_viewBalanceFragment"
+			app:destination="@id/viewBalanceFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+		<action
+			android:id="@+id/action_homeFragment_to_searchFragment"
+			app:destination="@id/searchFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+		<action
+			android:id="@+id/action_homeFragment_to_removeTrainFragment"
+			app:destination="@id/removeTrainFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+		<action
+			android:id="@+id/action_homeFragment_to_profileFragment"
+			app:destination="@id/profileFragment"
+			app:enterAnim="@anim/slide_in_right"
+			app:exitAnim="@anim/slide_out_left"
+			app:popEnterAnim="@anim/slide_in_left"
+			app:popExitAnim="@anim/slide_out_right"  />
+	</fragment>
+	<activity
+		android:id="@+id/nav_logout"
+		android:name="com.hitk.railwayreservation.oboarding.OnBoardingActivity"
+		android:label="BoardingActivity" />
+	<fragment
+		android:id="@+id/addTrainFragment"
+		android:name="com.hitk.railwayreservation.main.AddTrainFragment"
+		android:label="fragment_add_train"
+		tools:layout="@layout/fragment_add_train" />
+	<fragment
+		android:id="@+id/bookFragment"
+		android:name="com.hitk.railwayreservation.main.BookFragment"
+		android:label="fragment_book"
+		tools:layout="@layout/fragment_book" />
+	<fragment
+		android:id="@+id/profileFragment"
+		android:name="com.hitk.railwayreservation.main.ProfileFragment"
+		android:label="fragment_profile"
+		tools:layout="@layout/fragment_profile" />
+	<fragment
+		android:id="@+id/removeTrainFragment"
+		android:name="com.hitk.railwayreservation.main.RemoveTrainFragment"
+		android:label="fragment_remove_train"
+		tools:layout="@layout/fragment_remove_train" />
+	<fragment
+		android:id="@+id/searchFragment"
+		android:name="com.hitk.railwayreservation.main.SearchFragment"
+		android:label="fragment_search"
+		tools:layout="@layout/fragment_search" />
+	<fragment
+		android:id="@+id/viewBalanceFragment"
+		android:name="com.hitk.railwayreservation.main.ViewBalanceFragment"
+		android:label="fragment_view_balance"
+		tools:layout="@layout/fragment_view_balance" />
+	<fragment
+		android:id="@+id/viewTicketsFragment"
+		android:name="com.hitk.railwayreservation.main.ViewTicketsFragment"
+		android:label="fragment_view_tickets"
+		tools:layout="@layout/fragment_view_tickets" />
+	<fragment
+		android:id="@+id/viewReportFragment"
+		android:name="com.hitk.railwayreservation.main.ViewReportFragment"
+		android:label="fragment_view_report"
+		tools:layout="@layout/fragment_view_report" />
 </navigation>
