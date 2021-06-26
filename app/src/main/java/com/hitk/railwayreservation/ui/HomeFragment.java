@@ -21,7 +21,7 @@ import org.jetbrains.annotations.NotNull;
 public class HomeFragment extends Fragment {
 
     private static final String TAG = "Home Fragment";
-    MaterialToolbar toolbar;
+
     LinearLayout linearLayout1;
     LinearLayout linearLayout2;
     LinearLayout linearLayoutAdmin1;
@@ -42,25 +42,9 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NotNull View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        toolbar=view.findViewById(R.id.toolbar);
-        toolbar.setOnMenuItemClickListener(item -> {
-            switch (item.getItemId()){
-                case R.id.profile:
-                    return true;
 
-                case R.id.logout:
-                    Log.d(TAG, "onNavigationItemSelected: logging out");
-                    FirebaseAuth.getInstance().signOut();
-                    Navigation.findNavController(view).navigate(R.id.nav_logout);
-                    getActivity().finishAffinity();
-                    return true;
-
-                default:
-            }
-            return false;
-        });
-
-        linearLayout1=view.findViewById(R.id.linearLayout1);
+        getActivity().setTitle("HOME");
+        linearLayout1 = view.findViewById(R.id.linearLayout1);
         linearLayout2=view.findViewById(R.id.linearLayout2);
         linearLayoutAdmin1=view.findViewById(R.id.linearLayoutAdmin1);
         //linearLayoutAdmin2=view.findViewById(R.id.linearLayoutAdmin2);
