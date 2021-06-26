@@ -4,8 +4,6 @@ import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.navigation.NavController;
-import androidx.navigation.Navigation;
 
 import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -14,13 +12,16 @@ import com.hitk.railwayreservation.oboarding.OnBoardingActivity;
 
 public class MainActivity extends AppCompatActivity {
 	
+	public MaterialToolbar toolbar;
+	
+	
 	@Override
 	protected void onCreate (Bundle savedInstanceState) {
 		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		
-		MaterialToolbar toolbar = findViewById(R.id.toolbar);
+		toolbar = findViewById(R.id.toolbar);
 		toolbar.setOnMenuItemClickListener(item -> {
 			switch (item.getItemId()) {
 				case R.id.profile:

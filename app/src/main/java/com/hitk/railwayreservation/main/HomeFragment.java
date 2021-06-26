@@ -13,7 +13,6 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 
-import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,11 +27,9 @@ public class HomeFragment extends Fragment {
 	
 	private static final String TAG = HomeFragment.class.getSimpleName();
 	
-	NavController navController;
+	private NavController navController;
 	
-	LinearLayout normal1, normal2, admin1, admin2;
-	
-	CardView search, book, viewTickets, viewBalance, addTrain, removeTrain, viewReport;
+	private CardView search, book, viewTickets, viewBalance, addTrain, removeTrain, viewReport;
 	
 	
 	@Override
@@ -52,11 +49,11 @@ public class HomeFragment extends Fragment {
 		
 		navController = Navigation.findNavController(view);
 		
-		normal1 = view.findViewById(R.id.ll_normal1);
-		normal2 = view.findViewById(R.id.ll_normal2);
+		LinearLayout normal1 = view.findViewById(R.id.ll_normal1);
+		LinearLayout normal2 = view.findViewById(R.id.ll_normal2);
 		
-		admin1 = view.findViewById(R.id.ll_admin1);
-		admin2 = view.findViewById(R.id.ll_admin2);
+		LinearLayout admin1 = view.findViewById(R.id.ll_admin1);
+		LinearLayout admin2 = view.findViewById(R.id.ll_admin2);
 		
 		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_USERS)
 		                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())

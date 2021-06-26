@@ -11,4 +11,15 @@
 	<string name="profile">Profile</string>
 	<string name="logout">Logout</string>
 	<string name="add_train">Add Train</string>
+	<string name="train_number">Train Number</string>
+	<string name="train_name">Train Name</string>
+	<string name="source">Source</string>
+	<string name="dept_date">Dept Date</string>
+	<string name="dept_time">Dept Time</string>
+	<string name="destination">Destination</string>
+	<string name="arr_date">Arr Date</string>
+	<string name="arr_time">Arr Time</string>
+	<string name="number_of_seats">Number of Seats</string>
+	<string name="seat_type">Seat Type</string>
+	<string name="fare">Fare</string>
 </resources>
