@@ -2,65 +2,70 @@ package com.hitk.railwayreservation.main;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
+import android.widget.Button;
 
+import com.google.android.material.datepicker.MaterialDatePicker;
 import com.hitk.railwayreservation.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SearchFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import org.jetbrains.annotations.NotNull;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+
 public class SearchFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SearchFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SearchFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SearchFragment newInstance(String param1, String param2) {
-        SearchFragment fragment = new SearchFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
-    }
+    AutoCompleteTextView act_source;
+    AutoCompleteTextView act_destination;
+    AutoCompleteTextView act_date;
+    ArrayList<String> stations;
+    ArrayAdapter searchAdapter;
+    Button btn_search_train;
+    MaterialDatePicker<Long> datePicker;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        getActivity().setTitle("Search");
+        act_source = view.findViewById(R.id.act_source);
+        act_destination = view.findViewById(R.id.act_destination);
+        btn_search_train = view.findViewById(R.id.btn_search_train);
+        act_date = view.findViewById(R.id.act_date);
+
+        setUpFields();
+        act_date.setOnClickListener(v -> {
+            datePicker.show(getParentFragmentManager(), datePicker.toString());
+        });
+        //datePicker.addOnPositiveButtonClickListener();
+
+    }
+
+    private void setUpFields() {
+        stations = new ArrayList<>(Arrays.asList("Option 1", "Option 2", "Option 3", "Option 4"));
+        searchAdapter = new ArrayAdapter<>(requireContext(), R.layout.item_dropdown, stations);
+        act_source.setAdapter(searchAdapter);
+        act_destination.setAdapter(searchAdapter);
+        act_source.setThreshold(1);
+        act_destination.setThreshold(1);
+        datePicker = MaterialDatePicker.Builder.datePicker()
+                .setTitleText("Select Date")
+                .setSelection(MaterialDatePicker.todayInUtcMilliseconds())
+                .build();
     }
 }

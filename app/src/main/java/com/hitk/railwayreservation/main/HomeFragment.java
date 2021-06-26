@@ -48,25 +48,9 @@ public class HomeFragment extends Fragment {
 		
 		super.onViewCreated(view, savedInstanceState);
 		
-		navController = Navigation.findNavController(view);
+		requireActivity().setTitle("Railway Reservation");
 		
-		MaterialToolbar toolbar = view.findViewById(R.id.toolbar);
-		toolbar.setOnMenuItemClickListener(item -> {
-			switch (item.getItemId()) {
-				case R.id.profile:
-					navController.navigate(R.id.action_homeFragment_to_profileFragment);
-					return true;
-				
-				case R.id.logout:
-					FirebaseAuth.getInstance().signOut();
-					navController.navigate(R.id.action_homeFragment_to_nav_logout);
-					requireActivity().finishAffinity();
-					return true;
-				
-				default:
-					return false;
-			}
-		});
+		navController = Navigation.findNavController(view);
 		
 		normal1 = view.findViewById(R.id.ll_normal1);
 		normal2 = view.findViewById(R.id.ll_normal2);

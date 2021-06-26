@@ -196,7 +196,7 @@ public class AddTrainFragment extends Fragment {
 			seatTypes[i] = seatTypeValues[i].name();
 		}
 		ArrayAdapter<String> adapter = new ArrayAdapter<>(requireContext(),
-		                                                  R.layout.item_seat_type,
+		                                                  R.layout.item_dropdown,
 		                                                  seatTypes);
 		seatTypeTextView.setAdapter(adapter);
 		
