@@ -14,7 +14,5 @@
     <dimen name="largeText">22sp</dimen>
     <dimen name="extraLargeText">28sp</dimen>
 
-    <dimen name="loginScreenBoxStrokeWidthFocused">2dp</dimen>
-
-    <dimen name="createAccountScreenBoxStrokeWidthFocused">2dp</dimen>
+    <dimen name="boxStrokeWidthFocused">2dp</dimen>
 </resources>

@@ -1,14 +1,323 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".main.AddTrainFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="Add Train" />
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".oboarding.SignUpFragment">
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content">
+		
+		<Button
+			android:id="@+id/btn_add_train"
+			android:layout_width="0dp"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginTop="@dimen/mediumMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:layout_marginBottom="@dimen/mediumMargin"
+			android:background="@drawable/rounded_buttons"
+			android:text="@string/add_train"
+			android:textSize="@dimen/mediumText"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_fare"
+			app:layout_constraintVertical_bias="0.0" />
+		
+		<ProgressBar
+			android:id="@+id/pb_add_train"
+			android:layout_width="90dp"
+			android:layout_height="90dp"
+			android:elevation="16dp"
+			android:padding="@dimen/mediumPadding"
+			android:visibility="invisible"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_number"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginTop="@dimen/mediumMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Train Number"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="clear_text"
+			app:endIconTint="@color/iconTint"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:startIconDrawable="@drawable/ic_train"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/et_train_number"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="number"
+				android:maxLength="8" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_name"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Train Name"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="clear_text"
+			app:endIconTint="@color/iconTint"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_number"
+			app:startIconDrawable="@drawable/ic_pen"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/et_train_name"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textShortMessage" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_source"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Source"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="clear_text"
+			app:endIconTint="@color/iconTint"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_name"
+			app:startIconDrawable="@drawable/ic_place"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/et_train_source"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textShortMessage" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_departure_time"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Departure Time"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_source"
+			app:startIconDrawable="@drawable/ic_date"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/et_train_departure_time"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="none" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_destination"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Destination"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="clear_text"
+			app:endIconTint="@color/iconTint"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_departure_time"
+			app:startIconDrawable="@drawable/ic_place"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/et_train_destination"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="textShortMessage" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_arrival_time"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Arrival Time"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_destination"
+			app:startIconDrawable="@drawable/ic_date"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/et_train_arrival_time"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="none" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_number_of_seats"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Number of Seats"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="clear_text"
+			app:endIconTint="@color/iconTint"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_arrival_time"
+			app:startIconDrawable="@drawable/ic_plus_one"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/et_train_number_of_seats"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="number"
+				android:maxLength="2" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_seat_type"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Seat Type"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="dropdown_menu"
+			app:endIconTint="@color/iconTint"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_number_of_seats"
+			app:startIconDrawable="@drawable/ic_seat"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.MaterialAutoCompleteTextView
+				android:id="@+id/mactv_train_seat_type"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="none" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_train_fare"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="@dimen/largeMargin"
+			android:layout_marginEnd="@dimen/largeMargin"
+			android:hint="Fare"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="clear_text"
+			app:endIconTint="@color/iconTint"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:hintTextColor="@color/iconTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_train_seat_type"
+			app:startIconDrawable="@drawable/ic_wallet"
+			app:startIconTint="@color/iconTint">
+			
+			<com.google.android.material.textfield.TextInputEditText
+				android:id="@+id/et_train_fare"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="numberDecimal" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
-</FrameLayout>
+</ScrollView>
