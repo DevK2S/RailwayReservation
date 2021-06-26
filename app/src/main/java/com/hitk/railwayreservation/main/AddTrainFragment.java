@@ -76,6 +76,9 @@ public class AddTrainFragment extends Fragment {
 		
 		super.onViewCreated(view, savedInstanceState);
 		
+		MainActivity mainActivity = (MainActivity) requireActivity();
+		mainActivity.toolbar.setTitle("Add Train");
+		
 		navController = Navigation.findNavController(view);
 		
 		progressBar = view.findViewById(R.id.pb_add_train);

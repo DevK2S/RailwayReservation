@@ -35,14 +35,16 @@ public class SearchFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_search, container, false);
     }
 
     @Override
     public void onViewCreated(@NonNull @NotNull View view, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        getActivity().setTitle("Search");
+    
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.toolbar.setTitle("Search Trains");
+        
         act_source = view.findViewById(R.id.act_source);
         act_destination = view.findViewById(R.id.act_destination);
         btn_search_train = view.findViewById(R.id.btn_search_train);

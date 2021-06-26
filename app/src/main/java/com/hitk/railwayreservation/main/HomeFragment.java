@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -25,8 +26,6 @@ import org.jetbrains.annotations.NotNull;
 
 public class HomeFragment extends Fragment {
 	
-	private static final String TAG = HomeFragment.class.getSimpleName();
-	
 	private NavController navController;
 	
 	private CardView search, book, viewTickets, viewBalance, addTrain, removeTrain, viewReport;
@@ -45,23 +44,36 @@ public class HomeFragment extends Fragment {
 		
 		super.onViewCreated(view, savedInstanceState);
 		
-		requireActivity().setTitle("Railway Reservation");
+		MainActivity mainActivity = (MainActivity) requireActivity();
+		mainActivity.toolbar.setTitle("Railway Reservation");
 		
 		navController = Navigation.findNavController(view);
 		
+		ProgressBar progressBar = view.findViewById(R.id.pb_home);
+		progressBar.setVisibility(View.INVISIBLE);
+		
 		LinearLayout normal1 = view.findViewById(R.id.ll_normal1);
+//		normal1.setVisibility(View.GONE);
 		LinearLayout normal2 = view.findViewById(R.id.ll_normal2);
+//		normal2.setVisibility(View.GONE);
 		
 		LinearLayout admin1 = view.findViewById(R.id.ll_admin1);
+//		admin1.setVisibility(View.GONE);
 		LinearLayout admin2 = view.findViewById(R.id.ll_admin2);
+//		admin2.setVisibility(View.GONE);
 		
 		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_USERS)
 		                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
 		                .addListenerForSingleValueEvent(new ValueEventListener() {
 			                @Override
 			                public void onDataChange (@NonNull @NotNull DataSnapshot snapshot) {
-								if (snapshot.exists() && snapshot.hasChildren()) {
-									
+//			                	progressBar.setVisibility(View.INVISIBLE);
+//			                	normal1.setVisibility(View.VISIBLE);
+//			                	normal2.setVisibility(View.VISIBLE);
+//			                	admin1.setVisibility(View.VISIBLE);
+//			                	admin2.setVisibility(View.VISIBLE);
+//								if (snapshot.exists() && snapshot.hasChildren()) {
+//
 //									LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
 //											ViewGroup.LayoutParams.MATCH_PARENT, 0, 2.0f);
 //									normal1.setLayoutParams(params);
@@ -69,15 +81,17 @@ public class HomeFragment extends Fragment {
 //
 //									admin1.setVisibility(View.GONE);
 //									admin2.setVisibility(View.GONE);
-									
-									Log.d(TAG, "onDataChange: " + snapshot);
-								}
+//								}
 			                }
 			
 			
 			                @Override
 			                public void onCancelled (@NonNull @NotNull DatabaseError error) {
-				
+//				                progressBar.setVisibility(View.INVISIBLE);
+//				                normal1.setVisibility(View.VISIBLE);
+//				                normal2.setVisibility(View.VISIBLE);
+//				                admin1.setVisibility(View.VISIBLE);
+//				                admin2.setVisibility(View.VISIBLE);
 			                }
 		                });
 		
