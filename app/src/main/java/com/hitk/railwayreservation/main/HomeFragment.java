@@ -1,7 +1,6 @@
 package com.hitk.railwayreservation.main;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.hitk.railwayreservation.Constants;
 import com.hitk.railwayreservation.R;
+import com.hitk.railwayreservation.model.UserType;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -50,48 +50,60 @@ public class HomeFragment extends Fragment {
 		navController = Navigation.findNavController(view);
 		
 		ProgressBar progressBar = view.findViewById(R.id.pb_home);
-		progressBar.setVisibility(View.INVISIBLE);
 		
 		LinearLayout normal1 = view.findViewById(R.id.ll_normal1);
-//		normal1.setVisibility(View.GONE);
 		LinearLayout normal2 = view.findViewById(R.id.ll_normal2);
-//		normal2.setVisibility(View.GONE);
 		
 		LinearLayout admin1 = view.findViewById(R.id.ll_admin1);
-//		admin1.setVisibility(View.GONE);
 		LinearLayout admin2 = view.findViewById(R.id.ll_admin2);
-//		admin2.setVisibility(View.GONE);
+		
+		normal1.setVisibility(View.GONE);
+		normal2.setVisibility(View.GONE);
+		
+		admin1.setVisibility(View.GONE);
+		admin2.setVisibility(View.GONE);
 		
 		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_USERS)
 		                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
 		                .addListenerForSingleValueEvent(new ValueEventListener() {
 			                @Override
 			                public void onDataChange (@NonNull @NotNull DataSnapshot snapshot) {
-//			                	progressBar.setVisibility(View.INVISIBLE);
-//			                	normal1.setVisibility(View.VISIBLE);
-//			                	normal2.setVisibility(View.VISIBLE);
-//			                	admin1.setVisibility(View.VISIBLE);
-//			                	admin2.setVisibility(View.VISIBLE);
-//								if (snapshot.exists() && snapshot.hasChildren()) {
-//
-//									LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-//											ViewGroup.LayoutParams.MATCH_PARENT, 0, 2.0f);
-//									normal1.setLayoutParams(params);
-//									normal2.setLayoutParams(params);
-//
-//									admin1.setVisibility(View.GONE);
-//									admin2.setVisibility(View.GONE);
-//								}
+				
+				                progressBar.setVisibility(View.INVISIBLE);
+				
+				                normal1.setVisibility(View.VISIBLE);
+				                normal2.setVisibility(View.VISIBLE);
+				
+				                if (snapshot.exists() && snapshot.hasChild("userType") && snapshot
+						                .child("userType")
+						                .getValue(UserType.class) != UserType.ADMIN) {
+					
+					                LinearLayout.LayoutParams params =
+							                new LinearLayout.LayoutParams(
+							                ViewGroup.LayoutParams.MATCH_PARENT, 0, 2.0f);
+					                
+					                normal1.setLayoutParams(params);
+					                normal2.setLayoutParams(params);
+					
+				                } else {
+					
+					                admin1.setVisibility(View.VISIBLE);
+					                admin2.setVisibility(View.VISIBLE);
+					
+				                }
 			                }
 			
 			
 			                @Override
 			                public void onCancelled (@NonNull @NotNull DatabaseError error) {
-//				                progressBar.setVisibility(View.INVISIBLE);
-//				                normal1.setVisibility(View.VISIBLE);
-//				                normal2.setVisibility(View.VISIBLE);
-//				                admin1.setVisibility(View.VISIBLE);
-//				                admin2.setVisibility(View.VISIBLE);
+				
+				                progressBar.setVisibility(View.INVISIBLE);
+				
+				                normal1.setVisibility(View.VISIBLE);
+				                normal2.setVisibility(View.VISIBLE);
+				
+				                admin1.setVisibility(View.VISIBLE);
+				                admin2.setVisibility(View.VISIBLE);
 			                }
 		                });
 		
