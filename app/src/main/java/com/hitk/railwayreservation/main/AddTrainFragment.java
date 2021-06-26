@@ -1,4 +1,4 @@
-package com.hitk.railwayreservation.ui;
+package com.hitk.railwayreservation.main;
 
 import android.os.Bundle;
 
@@ -12,10 +12,10 @@ import com.hitk.railwayreservation.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RemoveTrainFragment#newInstance} factory method to
+ * Use the {@link AddTrainFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RemoveTrainFragment extends Fragment {
+public class AddTrainFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -26,7 +26,7 @@ public class RemoveTrainFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public RemoveTrainFragment() {
+    public AddTrainFragment() {
         // Required empty public constructor
     }
 
@@ -36,11 +36,11 @@ public class RemoveTrainFragment extends Fragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment RemoveTrainFragment.
+     * @return A new instance of fragment AddTrainFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RemoveTrainFragment newInstance(String param1, String param2) {
-        RemoveTrainFragment fragment = new RemoveTrainFragment();
+    public static AddTrainFragment newInstance(String param1, String param2) {
+        AddTrainFragment fragment = new AddTrainFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -61,6 +61,6 @@ public class RemoveTrainFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_remove_train, container, false);
+        return inflater.inflate(R.layout.fragment_add_train, container, false);
     }
 }

@@ -4,7 +4,7 @@
 	xmlns:tools="http://schemas.android.com/tools"
 	android:layout_width="match_parent"
 	android:layout_height="match_parent"
-	tools:context=".ui.LoginFragment">
+	tools:context=".oboarding.LoginFragment">
 	
 	<androidx.constraintlayout.widget.ConstraintLayout
 		android:id="@+id/toolbar_login"
@@ -21,10 +21,9 @@
 			android:layout_marginStart="8dp"
 			android:layout_marginTop="16dp"
 			android:layout_marginBottom="16dp"
-			android:text="Login"
+			android:text="@string/login"
 			android:textSize="28sp"
 			android:textStyle="bold"
-			android:transitionName="welcome_transition"
 			app:layout_constraintBottom_toBottomOf="parent"
 			app:layout_constraintEnd_toEndOf="parent"
 			app:layout_constraintHorizontal_bias="0.2"
@@ -42,9 +41,8 @@
 		android:layout_marginEnd="@dimen/largeMargin"
 		android:layout_marginBottom="16dp"
 		android:background="@drawable/rounded_buttons"
-		android:text="Login"
+		android:text="@string/login"
 		android:textSize="@dimen/mediumText"
-		android:transitionName="login_transition"
 		app:layout_constraintBottom_toTopOf="@id/btn_create_account_login"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent" />
@@ -58,9 +56,8 @@
 		android:layout_marginEnd="@dimen/largeMargin"
 		android:layout_marginBottom="16dp"
 		android:background="@drawable/rounded_buttons"
-		android:text="Create Account"
+		android:text="@string/create_account"
 		android:textSize="@dimen/mediumText"
-		android:transitionName="create_account_transition"
 		app:layout_constraintBottom_toBottomOf="parent"
 		app:layout_constraintEnd_toEndOf="parent"
 		app:layout_constraintStart_toStartOf="parent" />
@@ -86,7 +83,6 @@
 		android:layout_marginStart="@dimen/largeMargin"
 		android:layout_marginTop="32dp"
 		android:layout_marginEnd="@dimen/largeMargin"
-		android:transitionName="email_transition"
 		app:boxStrokeColor="@color/iconTint"
 		app:boxStrokeErrorColor="@color/errorTint"
 		app:boxStrokeWidthFocused="@dimen/createAccountScreenBoxStrokeWidthFocused"
@@ -106,9 +102,8 @@
 			android:id="@+id/et_email_login"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:hint="Email"
-			android:inputType="textEmailAddress"
-			android:transitionName="email_transition" />
+			android:hint="@string/email"
+			android:inputType="textEmailAddress" />
 	</com.google.android.material.textfield.TextInputLayout>
 	
 	<com.google.android.material.textfield.TextInputLayout
@@ -118,7 +113,6 @@
 		android:layout_height="wrap_content"
 		android:layout_marginStart="@dimen/largeMargin"
 		android:layout_marginEnd="@dimen/largeMargin"
-		android:transitionName="password_transition"
 		app:boxStrokeColor="@color/iconTint"
 		app:boxStrokeErrorColor="@color/errorTint"
 		app:boxStrokeWidthFocused="@dimen/createAccountScreenBoxStrokeWidthFocused"
@@ -138,11 +132,9 @@
 			android:id="@+id/et_password_login"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
-			android:hint="@string/create_account_screen_password"
-			android:inputType="textPassword"
-			android:transitionName="password_transition" />
+			android:hint="@string/password"
+			android:inputType="textPassword" />
 	</com.google.android.material.textfield.TextInputLayout>
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

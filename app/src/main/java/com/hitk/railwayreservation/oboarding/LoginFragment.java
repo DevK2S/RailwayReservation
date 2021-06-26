@@ -1,4 +1,4 @@
-package com.hitk.railwayreservation.ui;
+package com.hitk.railwayreservation.oboarding;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -19,7 +19,7 @@ import androidx.navigation.Navigation;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
-import com.hitk.railwayreservation.MainActivity;
+import com.hitk.railwayreservation.main.MainActivity;
 import com.hitk.railwayreservation.R;
 
 

@@ -5,8 +5,14 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TrainModel(
-    val trainNumber : Int = 0,
-    val trainName : String ="",
-    val startStation : String ="",
-    val endStation : String ="",
-):Parcelable
+	val number: Long,
+	val name: String,
+	val source: String,
+	val departureTime: String,
+	val destination: String,
+	val arrivalTime: String,
+	val numberOfSeats: Int,
+	val seatsAvailable: Int,
+	val seatType: SeatType,
+	val fare: Double,
+) : Parcelable
