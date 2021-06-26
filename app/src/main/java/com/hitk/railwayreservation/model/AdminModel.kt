@@ -14,4 +14,6 @@ data class AdminModel(
 	constructor(name: String, email: String, phoneNumber: String) : this(
 		UserType.ADMIN, name, email, phoneNumber
 	)
+	
+	constructor() : this(UserType.ADMIN, "", "", "")
 }

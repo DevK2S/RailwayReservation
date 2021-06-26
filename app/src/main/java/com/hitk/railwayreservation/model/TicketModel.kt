@@ -13,4 +13,7 @@ data class TicketModel(
 	val travelDate: String,
 	val numberOfPassengers: Int,
 	val totalAmount: Double,
-) : Parcelable
+) : Parcelable {
+	
+	constructor() : this("", TicketState.BOOKED, 0, "", "", "", 0, 0.0)
+}

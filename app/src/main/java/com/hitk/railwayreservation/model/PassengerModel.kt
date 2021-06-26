@@ -17,4 +17,7 @@ data class PassengerModel(
 	constructor(
 		name: String, email: String, phoneNumber: String, address: String
 	) : this(UserType.PASSENGER, name, email, phoneNumber, address, 0.0, ArrayList())
+	
+	constructor(
+	) : this(UserType.PASSENGER, "", "", "", "", 0.0, ArrayList())
 }

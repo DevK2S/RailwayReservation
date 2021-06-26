@@ -203,6 +203,7 @@ public class AddTrainFragment extends Fragment {
 		arrivalTimeEditText.setInputType(InputType.TYPE_NULL);
 		arrivalTimeEditText.setOnClickListener(v -> {
 			
+			arrivalDateTextInput.setError(null);
 			arrivalTimeTextInput.setError(null);
 			showArrivalTimePicker();
 		});

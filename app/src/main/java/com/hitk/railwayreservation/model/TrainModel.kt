@@ -17,4 +17,7 @@ data class TrainModel(
 	val seatsAvailable: Int,
 	val seatType: SeatType,
 	val fare: Double,
-) : Parcelable
+) : Parcelable {
+	
+	constructor() : this(0, "", "", 0, "", "", 0, "", 0, 0, SeatType.GENERAL, 0.0)
+}
