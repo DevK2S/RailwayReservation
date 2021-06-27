@@ -23,7 +23,7 @@ import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
 import com.hitk.railwayreservation.main.MainActivity;
 import com.hitk.railwayreservation.R;
-import com.hitk.railwayreservation.model.PassengerModel;
+import com.hitk.railwayreservation.model.UserModel;
 
 public class SignUpFragment extends Fragment {
 	
@@ -245,7 +245,7 @@ public class SignUpFragment extends Fragment {
 		String phoneNumber = phoneNumberEditText.getText().toString();
 		String address = addressEditText.getText().toString();
 		
-		PassengerModel passenger = new PassengerModel(name, email, phoneNumber, address);
+		UserModel passenger = new UserModel(name, email, phoneNumber, address);
 		
 		FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(passenger)
 		                .addOnCompleteListener(setValueTask -> {

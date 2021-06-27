@@ -120,17 +120,4 @@
 
     </LinearLayout>
 
-    <!---<ImageButton
-          android:id="@+id/ib_train_delete"
-          android:layout_width="40dp"
-          android:layout_height="40dp"
-          android:layout_marginEnd="@dimen/smallMargin"
-          android:background="@android:color/transparent"
-          android:scaleType="centerCrop"
-          android:src="@drawable/ic_delete"
-          app:layout_constraintBottom_toBottomOf="@id/ll_train_item"
-          app:layout_constraintEnd_toEndOf="parent"
-          app:layout_constraintTop_toTopOf="@id/ll_train_item"
-          app:tint="@color/errorTint" />-->
-
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -115,6 +115,8 @@
 			app:boxStrokeColor="@color/iconTint"
 			app:boxStrokeErrorColor="@color/errorTint"
 			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="dropdown_menu"
+			app:endIconTint="@color/iconTint"
 			app:errorEnabled="true"
 			app:errorIconTint="@color/errorTint"
 			app:errorTextColor="@color/errorTint"
@@ -125,10 +127,11 @@
 			app:startIconDrawable="@drawable/ic_place"
 			app:startIconTint="@color/iconTint">
 
-			<AutoCompleteTextView
-				android:id="@+id/act_train_source"
+			<com.google.android.material.textfield.MaterialAutoCompleteTextView
+				android:id="@+id/mact_train_source"
 				android:layout_width="match_parent"
-				android:layout_height="wrap_content" />
+				android:layout_height="wrap_content"
+				android:inputType="none" />
 
 		</com.google.android.material.textfield.TextInputLayout>
 		
@@ -198,7 +201,7 @@
 			</com.google.android.material.textfield.TextInputLayout>
 		
 		</LinearLayout>
-
+		
 		<com.google.android.material.textfield.TextInputLayout
 			android:id="@+id/til_train_destination"
 			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
@@ -210,6 +213,8 @@
 			app:boxStrokeColor="@color/iconTint"
 			app:boxStrokeErrorColor="@color/errorTint"
 			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:endIconMode="dropdown_menu"
+			app:endIconTint="@color/iconTint"
 			app:errorEnabled="true"
 			app:errorIconTint="@color/errorTint"
 			app:errorTextColor="@color/errorTint"
@@ -219,13 +224,13 @@
 			app:layout_constraintTop_toBottomOf="@id/ll_departure_date_time"
 			app:startIconDrawable="@drawable/ic_place"
 			app:startIconTint="@color/iconTint">
-
-			<AutoCompleteTextView
-				android:id="@+id/act_train_destination"
+			
+			<com.google.android.material.textfield.MaterialAutoCompleteTextView
+				android:id="@+id/mact_train_destination"
 				android:layout_width="match_parent"
 				android:layout_height="wrap_content"
-				android:inputType="textShortMessage" />
-
+				android:inputType="none" />
+		
 		</com.google.android.material.textfield.TextInputLayout>
 		
 		<LinearLayout
