@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -37,35 +38,35 @@ import org.jetbrains.annotations.NotNull;
 import java.time.LocalDateTime;
 
 public class AddTrainFragment extends Fragment {
-	
+
 	private NavController navController;
-	
+
 	private TextInputLayout trainNumberTextInput, trainNameTextInput, sourceTextInput,
 			departureDateTextInput, departureTimeTextInput, destinationTextInput,
 			arrivalDateTextInput, arrivalTimeTextInput, numberOfSeatsTextInput, seatTypeTextInput,
 			fareTextInput;
-	
-	private TextInputEditText trainNumberEditText, trainNameEditText, sourceEditText,
-			departureDateEditText, departureTimeEditText, destinationEditText, arrivalDateEditText
-			, arrivalTimeEditText, numberOfSeatsEditText, fareEditText;
-	
+	private AutoCompleteTextView sourceAutoText, destinationAutoText;
+
+	private TextInputEditText trainNumberEditText, trainNameEditText,
+			departureDateEditText, departureTimeEditText, arrivalDateEditText, arrivalTimeEditText, numberOfSeatsEditText, fareEditText;
+
 	private MaterialAutoCompleteTextView seatTypeTextView;
-	
+
 	private ProgressBar progressBar;
-	
+
 	private MaterialDatePicker<Long> departureDatePicker, arrivalDatePicker;
-	
+
 	private Long departureDate, arrivalDate;
-	
+
 	private MaterialTimePicker departureTimePicker, arrivalTimePicker;
-	
+
 	private Integer departureTimeHour, departureTimeMinute, arrivalTimeHour, arrivalTimeMinute;
-	
-	
+
+
 	@Override
-	public View onCreateView (LayoutInflater inflater, ViewGroup container,
-	                          Bundle savedInstanceState) {
-		
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+
 		return inflater.inflate(R.layout.fragment_add_train, container, false);
 	}
 	
@@ -109,86 +110,86 @@ public class AddTrainFragment extends Fragment {
 		trainNameEditText = view.findViewById(R.id.et_train_name);
 		trainNameEditText.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void beforeTextChanged (CharSequence s, int start, int count, int after) {
-			
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
 			}
-			
-			
+
+
 			@Override
-			public void onTextChanged (CharSequence s, int start, int before, int count) {
-				
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+
 				trainNameTextInput.setError(null);
 			}
-			
-			
+
+
 			@Override
-			public void afterTextChanged (Editable s) {
-			
+			public void afterTextChanged(Editable s) {
+
 			}
 		});
-		
+
 		sourceTextInput = view.findViewById(R.id.til_train_source);
-		sourceEditText = view.findViewById(R.id.et_train_source);
-		sourceEditText.addTextChangedListener(new TextWatcher() {
+		sourceAutoText = view.findViewById(R.id.act_train_source);
+		sourceAutoText.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void beforeTextChanged (CharSequence s, int start, int count, int after) {
-			
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
 			}
-			
-			
+
+
 			@Override
-			public void onTextChanged (CharSequence s, int start, int before, int count) {
-				
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+
 				sourceTextInput.setError(null);
 			}
-			
-			
+
+
 			@Override
-			public void afterTextChanged (Editable s) {
-			
+			public void afterTextChanged(Editable s) {
+
 			}
 		});
-		
+
 		departureDateTextInput = view.findViewById(R.id.til_train_departure_date);
 		departureDateEditText = view.findViewById(R.id.et_train_departure_date);
 		departureDateEditText.setInputType(InputType.TYPE_NULL);
 		departureDateEditText.setOnClickListener(v -> {
-			
+
 			departureDateTextInput.setError(null);
 			showDepartureDatePicker();
 		});
-		
+
 		departureTimeTextInput = view.findViewById(R.id.til_train_departure_time);
 		departureTimeEditText = view.findViewById(R.id.et_train_departure_time);
 		departureTimeEditText.setInputType(InputType.TYPE_NULL);
 		departureTimeEditText.setOnClickListener(v -> {
-			
+
 			departureTimeTextInput.setError(null);
 			showDepartureTimePicker();
 		});
-		
+
 		destinationTextInput = view.findViewById(R.id.til_train_destination);
-		destinationEditText = view.findViewById(R.id.et_train_destination);
-		destinationEditText.addTextChangedListener(new TextWatcher() {
+		destinationAutoText = view.findViewById(R.id.act_train_destination);
+		destinationAutoText.addTextChangedListener(new TextWatcher() {
 			@Override
-			public void beforeTextChanged (CharSequence s, int start, int count, int after) {
-			
+			public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
 			}
-			
-			
+
+
 			@Override
-			public void onTextChanged (CharSequence s, int start, int before, int count) {
-				
+			public void onTextChanged(CharSequence s, int start, int before, int count) {
+
 				destinationTextInput.setError(null);
 			}
-			
-			
+
+
 			@Override
-			public void afterTextChanged (Editable s) {
-			
+			public void afterTextChanged(Editable s) {
+
 			}
 		});
-		
+
 		arrivalDateTextInput = view.findViewById(R.id.til_train_arrival_date);
 		arrivalDateEditText = view.findViewById(R.id.et_train_arrival_date);
 		arrivalDateEditText.setInputType(InputType.TYPE_NULL);
@@ -371,40 +372,40 @@ public class AddTrainFragment extends Fragment {
 	
 	
 	private boolean validateFields ( ) {
-		
+
 		String trainNumber = trainNumberEditText.getText().toString();
 		String trainNumberValidation = validateTrainNumber(trainNumber);
-		
+
 		String trainName = trainNameEditText.getText().toString();
 		String trainNameValidation = validateTrainName(trainName);
-		
-		String source = sourceEditText.getText().toString();
+
+		String source = sourceAutoText.getText().toString();
 		String sourceValidation = validateSource(source);
-		
+
 		String deptDate = departureDateEditText.getText().toString();
 		String deptDateValidation = validateDepartureDate(deptDate);
-		
+
 		String deptTime = departureTimeEditText.getText().toString();
 		String deptTimeValidation = validateDepartureTime(deptTime);
-		
-		String destination = destinationEditText.getText().toString();
+
+		String destination = destinationAutoText.getText().toString();
 		String destinationValidation = validateDestination(destination);
-		
+
 		String arrDate = arrivalDateEditText.getText().toString();
 		String arrDateValidation = validateArrivalDate(arrDate);
-		
+
 		String arrTime = arrivalTimeEditText.getText().toString();
 		String arrTimeValidation = validateArrivalTime(arrTime);
-		
+
 		String numberOfSeats = numberOfSeatsEditText.getText().toString();
 		String numberOfSeatsValidation = validateNumberOfSeats(numberOfSeats);
-		
+
 		String seatType = seatTypeTextView.getText().toString();
 		String seatTypeValidation = validateSeatType(seatType);
-		
+
 		String fare = fareEditText.getText().toString();
 		String fareValidation = validateFare(fare);
-		
+
 		if (trainNumberValidation == null && trainNameValidation == null && sourceValidation == null && deptDateValidation == null && deptTimeValidation == null && destinationValidation == null && arrDateValidation == null && arrTimeValidation == null && numberOfSeatsValidation == null && seatTypeValidation == null && fareValidation == null) {
 			return true;
 		}
@@ -458,41 +459,41 @@ public class AddTrainFragment extends Fragment {
 	
 	
 	private void addTrain ( ) {
-		
+
 		long trainNumber = Long.parseLong(trainNumberEditText.getText().toString());
 		String trainName = trainNameEditText.getText().toString();
-		String source = sourceEditText.getText().toString();
+		String source = sourceAutoText.getText().toString();
 		String deptTime = departureTimeEditText.getText().toString();
-		String destination = destinationEditText.getText().toString();
+		String destination = destinationAutoText.getText().toString();
 		String arrTime = arrivalTimeEditText.getText().toString();
 		int numberOfSeats = Integer.parseInt(numberOfSeatsEditText.getText().toString());
 		SeatType seatType = SeatType.valueOf(seatTypeTextView.getText().toString());
 		double fare = Double.parseDouble(fareEditText.getText().toString());
-		
+
 		TrainModel train = new TrainModel(trainNumber, trainName, source, departureDate, deptTime,
-		                                  destination, arrivalDate, arrTime, numberOfSeats,
-		                                  numberOfSeats, seatType, fare);
-		
+				destination, arrivalDate, arrTime, numberOfSeats,
+				numberOfSeats, seatType, fare);
+
 		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TRAINS)
-		                .child(String.valueOf(trainNumber)).setValue(train)
-		                .addOnCompleteListener(task -> {
-			
-			                progressBar.setVisibility(View.INVISIBLE);
-			
-			                if (task.isSuccessful()) {
-				
-				                Toast.makeText(requireContext(), "Train Added Successfully",
-				                               Toast.LENGTH_SHORT).show();
-				
-				                navController.navigateUp();
-				
-			                } else {
-				                if (task.getException() != null) {
-					                Toast.makeText(requireContext(),
-					                               task.getException().getMessage(),
-					                               Toast.LENGTH_SHORT).show();
-				                } else {
-					                Toast.makeText(requireContext(), "Cannot add train",
+				.child(String.valueOf(trainNumber)).setValue(train)
+				.addOnCompleteListener(task -> {
+
+					progressBar.setVisibility(View.INVISIBLE);
+
+					if (task.isSuccessful()) {
+
+						Toast.makeText(requireContext(), "Train Added Successfully",
+								Toast.LENGTH_SHORT).show();
+
+						navController.navigateUp();
+
+					} else {
+						if (task.getException() != null) {
+							Toast.makeText(requireContext(),
+									task.getException().getMessage(),
+									Toast.LENGTH_SHORT).show();
+						} else {
+							Toast.makeText(requireContext(), "Cannot add train",
 					                               Toast.LENGTH_SHORT).show();
 				                }
 			                }
