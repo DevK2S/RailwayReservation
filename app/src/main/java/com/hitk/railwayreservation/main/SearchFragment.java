@@ -14,6 +14,8 @@ import android.widget.ProgressBar;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,23 +39,25 @@ import java.util.ArrayList;
 
 
 public class SearchFragment extends Fragment {
-	
-	private TextInputLayout sourceTextInput, destinationTextInput, dateTextInput;
-	
-	private AutoCompleteTextView sourceTextView, destinationTextView, dateTextView;
-	
-	private MaterialDatePicker<Long> datePicker;
-	
-	private long searchDate;
-	
-	private ArrayList<TrainModel> trainList;
+
+    private NavController navController;
+
+    private TextInputLayout sourceTextInput, destinationTextInput, dateTextInput;
+
+    private AutoCompleteTextView sourceTextView, destinationTextView, dateTextView;
+
+    private MaterialDatePicker<Long> datePicker;
+
+    private long searchDate;
+
+    private ArrayList<TrainModel> trainList;
 	
 	private RecyclerView recyclerView;
 	
 	private ProgressBar progressBar;
-	
-	
-	@Override
+
+
+    @Override
 	public View onCreateView (LayoutInflater inflater, ViewGroup container,
 	                          Bundle savedInstanceState) {
 		
@@ -64,22 +68,23 @@ public class SearchFragment extends Fragment {
 	@Override
 	public void onViewCreated (@NonNull @NotNull View view,
 	                           @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
-		
-		super.onViewCreated(view, savedInstanceState);
-		
-		MainActivity mainActivity = (MainActivity) requireActivity();
-		mainActivity.toolbar.setTitle("Search Trains");
-		
-		recyclerView = view.findViewById(R.id.rv_search_train);
-		progressBar = view.findViewById(R.id.pb_search);
-		
-		sourceTextInput = view.findViewById(R.id.til_search_source);
-		sourceTextView = view.findViewById(R.id.act_source);
-		sourceTextView.setOnClickListener(v -> sourceTextInput.setError(null));
-		
-		destinationTextInput = view.findViewById(R.id.til_search_destination);
-		destinationTextView = view.findViewById(R.id.act_destination);
-		destinationTextView.setOnClickListener(v -> destinationTextInput.setError(null));
+
+        super.onViewCreated(view, savedInstanceState);
+
+        MainActivity mainActivity = (MainActivity) requireActivity();
+        mainActivity.toolbar.setTitle("Search Trains");
+
+        navController = Navigation.findNavController(view);
+        recyclerView = view.findViewById(R.id.rv_search_train);
+        progressBar = view.findViewById(R.id.pb_search);
+
+        sourceTextInput = view.findViewById(R.id.til_search_source);
+        sourceTextView = view.findViewById(R.id.act_source);
+        sourceTextView.setOnClickListener(v -> sourceTextInput.setError(null));
+
+        destinationTextInput = view.findViewById(R.id.til_search_destination);
+        destinationTextView = view.findViewById(R.id.act_destination);
+        destinationTextView.setOnClickListener(v -> destinationTextInput.setError(null));
 		
 		dateTextInput = view.findViewById(R.id.til_search_date);
 		dateTextView = view.findViewById(R.id.act_date);
@@ -244,18 +249,22 @@ public class SearchFragment extends Fragment {
 			                }
 		                });
 	}
-	
-	
-	private void setUpRecyclerView ( ) {
-		
-		SearchTrainAdapter searchTrainAdapter = new SearchTrainAdapter(trainList,
-		                                                               new SearchTrainAdapter.SearchTrainOnClickListener() { });
-		
-		recyclerView.addItemDecoration(
-				new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
-		recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
-		recyclerView.setAdapter(searchTrainAdapter);
-	}
-	
-	
+
+
+    private void setUpRecyclerView() {
+
+        SearchTrainAdapter searchTrainAdapter = new SearchTrainAdapter(trainList, this::bookTrain);
+
+        recyclerView.addItemDecoration(
+                new DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL));
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+        recyclerView.setAdapter(searchTrainAdapter);
+    }
+
+    private void bookTrain(int i) {
+        TrainModel train = trainList.get(i);
+        navController.navigate(SearchFragmentDirections.actionBook(train));
+    }
+
+
 }

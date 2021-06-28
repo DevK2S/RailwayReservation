@@ -21,19 +21,22 @@ import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.UserProfileChangeRequest;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.gson.Gson;
 import com.hitk.railwayreservation.main.MainActivity;
 import com.hitk.railwayreservation.R;
 import com.hitk.railwayreservation.model.UserModel;
 
+import java.util.ArrayList;
+
 public class SignUpFragment extends Fragment {
-	
-	private TextInputLayout nameTextInput, emailTextInput, passwordTextInput,
-			confirmPasswordTextInput, phoneNumberTextInput, addressTextInput;
-	
-	private TextInputEditText nameEditText, emailEditText, passwordEditText,
-			confirmPasswordEditText, phoneNumberEditText, addressEditText;
-	
-	private ProgressBar progressBar;
+
+    private TextInputLayout nameTextInput, emailTextInput, passwordTextInput,
+            confirmPasswordTextInput, phoneNumberTextInput, addressTextInput;
+
+    private TextInputEditText nameEditText, emailEditText, passwordEditText,
+            confirmPasswordEditText, phoneNumberEditText, addressEditText;
+
+    private ProgressBar progressBar;
 	
 	
 	@Override
@@ -237,25 +240,26 @@ public class SignUpFragment extends Fragment {
 	
 	
 	private void storeUserDetails ( ) {
-		
-		String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-		
-		String name = nameEditText.getText().toString();
-		String email = emailEditText.getText().toString();
-		String phoneNumber = phoneNumberEditText.getText().toString();
-		String address = addressEditText.getText().toString();
-		
-		UserModel passenger = new UserModel(name, email, phoneNumber, address);
-		
-		FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(passenger)
-		                .addOnCompleteListener(setValueTask -> {
-			
-			                if (setValueTask.isSuccessful()) {
-				
-				                FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
-				
-				                UserProfileChangeRequest.Builder profileUpdates =
-						                new UserProfileChangeRequest.Builder();
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+
+        String name = nameEditText.getText().toString();
+        String email = emailEditText.getText().toString();
+        String phoneNumber = phoneNumberEditText.getText().toString();
+        String address = addressEditText.getText().toString();
+
+
+        UserModel passenger = new UserModel(name, email, phoneNumber, address, new Gson().toJson(new ArrayList<String>()));
+
+        FirebaseDatabase.getInstance().getReference().child("users").child(uid).setValue(passenger)
+                .addOnCompleteListener(setValueTask -> {
+
+                    if (setValueTask.isSuccessful()) {
+
+                        FirebaseAuth.getInstance().getCurrentUser().sendEmailVerification();
+
+                        UserProfileChangeRequest.Builder profileUpdates =
+                                new UserProfileChangeRequest.Builder();
 				                profileUpdates.setDisplayName(name);
 				
 				                FirebaseAuth.getInstance().getCurrentUser()

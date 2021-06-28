@@ -66,6 +66,9 @@ public class SearchTrainAdapter
                 .getArrivalTime();
         holder.arrTime.setText(arrTime);
 
+        holder.itemView.setOnClickListener(v -> {
+            onClickListener.bookTrain(position);
+        });
 
     }
 
@@ -78,6 +81,8 @@ public class SearchTrainAdapter
 
 
     public interface SearchTrainOnClickListener {
+
+        void bookTrain(int position);
 
     }
 

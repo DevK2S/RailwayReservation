@@ -32,32 +32,32 @@ public class RemoveTrainAdapter
 		this.trains = trains;
 		this.onClickListener = onClickListener;
 	}
-	
-	
+
+
 	@NonNull
 	@NotNull
 	@Override
-	public RemoveTrainViewHolder onCreateViewHolder (@NonNull @NotNull ViewGroup parent,
-	                                                 int viewType) {
-		
+	public RemoveTrainViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent,
+													int viewType) {
+
 		LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
 		return new RemoveTrainViewHolder(
 				layoutInflater.inflate(R.layout.item_remove_train, parent, false));
 	}
-	
-	
+
+	SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
+
 	@Override
-	public void onBindViewHolder (@NonNull @NotNull RemoveTrainViewHolder holder, int position) {
-		
+	public void onBindViewHolder(@NonNull @NotNull RemoveTrainViewHolder holder, int position) {
+
 		TrainModel train = trains.get(position);
-		
+
 		holder.trainNumber.setText(String.valueOf(train.getNumber()));
 		holder.trainName.setText(train.getName());
 		holder.source.setText(train.getSource());
 		holder.destination.setText(train.getDestination());
-		
-		SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
-		
+
+
 		String deptTime = sdf.format(new Date(train.getDepartureDate())) + " " + train
 				.getDepartureTime();
 		holder.deptTime.setText(deptTime);

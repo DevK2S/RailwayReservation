@@ -25,16 +25,16 @@ import com.hitk.railwayreservation.model.UserType;
 import org.jetbrains.annotations.NotNull;
 
 public class HomeFragment extends Fragment {
-	
+
 	private NavController navController;
-	
-	private CardView search, book, viewTickets, viewBalance, addTrain, removeTrain, viewReport;
-	
-	
+
+	private CardView search, viewTickets, viewBalance, addTrain, removeTrain, viewReport;
+
+
 	@Override
-	public View onCreateView (LayoutInflater inflater, ViewGroup container,
-	                          Bundle savedInstanceState) {
-		
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+
 		return inflater.inflate(R.layout.fragment_home, container, false);
 	}
 	
@@ -108,7 +108,6 @@ public class HomeFragment extends Fragment {
 		                });
 		
 		search = view.findViewById(R.id.cd_search);
-		book = view.findViewById(R.id.cd_book);
 		
 		viewTickets = view.findViewById(R.id.cd_view_tickets);
 		viewBalance = view.findViewById(R.id.cd_view_balance);
@@ -126,9 +125,7 @@ public class HomeFragment extends Fragment {
 		
 		search.setOnClickListener(
 				v -> navController.navigate(R.id.action_homeFragment_to_searchFragment));
-		book.setOnClickListener(
-				v -> navController.navigate(R.id.action_homeFragment_to_bookFragment));
-		
+
 		viewTickets.setOnClickListener(
 				v -> navController.navigate(R.id.action_homeFragment_to_viewTicketsFragment));
 		viewBalance.setOnClickListener(
