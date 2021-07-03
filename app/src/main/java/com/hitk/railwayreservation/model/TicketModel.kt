@@ -5,15 +5,19 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class TicketModel(
-	val pnrNumber: String,
-	val ticketState: TicketState,
-	val trainNumber: Long,
-	val source: String,
-	val destination: String,
-	val travelDate: String,
-	val numberOfPassengers: Int,
-	val totalAmount: Double,
+	var pnrNumber: String,
+	var ticketState: TicketState,
+	var trainNumber: Long,
+	var trainName: String,
+	var source: String,
+	var destination: String,
+	var DeptDate: Long,
+	var DeptTime: String,
+	var ArrivalDate: Long,
+	var ArrivalTime: String,
+	var numberOfPassengers: Int,
+	var totalAmount: Double,
 ) : Parcelable {
-	
-	constructor() : this("", TicketState.BOOKED, 0, "", "", "", 0, 0.0)
+
+	constructor() : this("", TicketState.BOOKED, 0, "", "", "", 0, "", 0, "", 0, 0.0)
 }

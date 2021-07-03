@@ -227,7 +227,8 @@ public class BookFragment extends Fragment {
     private void storeTicket(String pnrNumber) {
 
         FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TICKETS).child(pnrNumber)
-                .setValue(new TicketModel(pnrNumber, TicketState.BOOKED, train.getNumber(), train.getSource(), train.getDestination(), train.getDepartureTime(),
+                .setValue(new TicketModel(pnrNumber, TicketState.BOOKED, train.getNumber(), train.getName(), train.getSource(), train.getDestination(), train.getDepartureDate(),
+                        train.getDepartureTime(), train.getArrivalDate(), train.getArrivalTime(),
                         Integer.valueOf(numberOfPassengerEditText.getText().toString().trim()), totalCost));
 
     }

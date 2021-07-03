@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:orientation="vertical">
+
+    <androidx.cardview.widget.CardView
+
+        android:id="@+id/cardViewHomeItem"
+        android:padding="16dp"
+        app:cardCornerRadius="30dp"
+        app:cardBackgroundColor="@color/colorPrimary"
+        android:background="@drawable/cardborder"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="8dp"
+            android:paddingStart="8dp"
+            android:paddingBottom="16dp">
+
+
+            <LinearLayout
+                android:id="@+id/ll_ticket_item"
+                android:layout_width="0dp"
+                android:gravity="center"
+                android:layout_marginHorizontal="@dimen/mediumMargin"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_ticket_status"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:textSize="@dimen/largeText"
+                    android:textAlignment="center" />
+
+
+                <TextView
+                    android:layout_marginTop="8dp"
+                    android:id="@+id/tv_ticket_pnr"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="pnr number"
+                    android:layout_marginBottom="8dp"
+                    android:textSize="@dimen/largeText"
+                    android:textAlignment="center" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll_train_item"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/smallMargin"
+                android:gravity="center"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/ll_ticket_item">
+
+                <TextView
+                    android:id="@+id/tv_train_number"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/colorPrimaryDark"
+                    android:textAlignment="center"
+                    android:maxLines="1"
+                    android:textSize="@dimen/largeText"
+                    tools:text="456789" />
+
+                <TextView
+                    android:id="@+id/tv_train_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAlignment="center"
+                    android:maxLines="1"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="@dimen/mediumText"
+                    tools:text="Kolkata Express" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:weightSum="2.5">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_train_source"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/mediumText"
+                            tools:text="Kolkata" />
+
+                        <TextView
+                            android:id="@+id/tv_ticket_departure_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/smallText"
+                            tools:text="Jul 22, 2021 10:15" />
+
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="0.5"
+                        android:layout_gravity="center"
+                        android:src="@drawable/ic_arrow_right"
+                        app:tint="@color/colorPrimaryDark" />
+
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:id="@+id/tv_train_destination"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="@dimen/mediumText"
+                            tools:text="Delhi" />
+
+                        <TextView
+                            android:id="@+id/tv_ticket_arrival_time"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:textAlignment="center"
+                            android:textSize="@dimen/smallText"
+                            tools:text="Jul 22, 2021 10:15" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+
+                <TextView
+                    android:id="@+id/tv_number_of_passenger"
+                    android:layout_width="match_parent"
+                    android:layout_marginTop="8dp"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/mediumText"
+                    android:textAlignment="center"
+                    android:textColor="@color/black"
+                    android:text="No. of Passengers:" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tv_cancel_ticket"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_marginTop="16dp"
+                android:gravity="center"
+                android:text="CANCEL TICKET"
+                android:textColor="@color/errorTint"
+                android:textSize="28dp"
+                android:textAllCaps="true"
+                android:layout_marginHorizontal="@dimen/mediumMargin"
+                app:layout_constraintTop_toBottomOf="@id/ll_train_item" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="20dp" />
+</LinearLayout>
