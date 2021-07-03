@@ -59,13 +59,6 @@
 			app:exitAnim="@anim/slide_out_left"
 			app:popEnterAnim="@anim/slide_in_left"
 			app:popExitAnim="@anim/slide_out_right"  />
-		<action
-			android:id="@+id/action_homeFragment_to_profileFragment"
-			app:destination="@id/profileFragment"
-			app:enterAnim="@anim/slide_in_right"
-			app:exitAnim="@anim/slide_out_left"
-			app:popEnterAnim="@anim/slide_in_left"
-			app:popExitAnim="@anim/slide_out_right"  />
 	</fragment>
 	<activity
 		android:id="@+id/nav_logout"
@@ -85,11 +78,6 @@
             android:name="Train"
             app:argType="com.hitk.railwayreservation.model.TrainModel" />
     </fragment>
-	<fragment
-		android:id="@+id/profileFragment"
-		android:name="com.hitk.railwayreservation.main.ProfileFragment"
-		android:label="fragment_profile"
-		tools:layout="@layout/fragment_profile" />
 	<fragment
 		android:id="@+id/removeTrainFragment"
 		android:name="com.hitk.railwayreservation.main.RemoveTrainFragment"

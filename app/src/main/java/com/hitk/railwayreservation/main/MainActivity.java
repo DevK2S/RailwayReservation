@@ -23,19 +23,13 @@ public class MainActivity extends AppCompatActivity {
 		
 		toolbar = findViewById(R.id.toolbar);
 		toolbar.setOnMenuItemClickListener(item -> {
-			switch (item.getItemId()) {
-				case R.id.profile:
-					return true;
-				
-				case R.id.logout:
-					FirebaseAuth.getInstance().signOut();
-					startActivity(new Intent(MainActivity.this, OnBoardingActivity.class));
-					finishAffinity();
-					return true;
-				
-				default:
-					return false;
+			if (item.getItemId() == R.id.logout) {
+				FirebaseAuth.getInstance().signOut();
+				startActivity(new Intent(MainActivity.this, OnBoardingActivity.class));
+				finishAffinity();
+				return true;
 			}
+			return false;
 		});
 	}
 	

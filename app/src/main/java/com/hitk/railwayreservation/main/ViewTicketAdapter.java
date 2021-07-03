@@ -32,16 +32,16 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
         this.onClickListener = onClickListener;
     }
 
+    
     @NonNull
     @NotNull
     @Override
     public ViewTicketViewHolder onCreateViewHolder(@NonNull @NotNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
-        return new ViewTicketAdapter.ViewTicketViewHolder(
+        return new ViewTicketViewHolder(
                 layoutInflater.inflate(R.layout.item_ticket, parent, false));
     }
 
-    SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
 
     @Override
     public void onBindViewHolder(@NonNull @NotNull ViewTicketViewHolder holder, int position) {
@@ -52,7 +52,7 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
             holder.ticketStatus.setText("BOOKED");
             holder.cancelTicket.setOnClickListener(v -> onClickListener.cancelBooking(position));
         } else {
-            holder.ticketStatus.setText("Cancelled");
+            holder.ticketStatus.setText("CANCELLED");
             holder.cancelTicket.setVisibility(View.GONE);
         }
 
@@ -65,7 +65,9 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
         holder.source.setText(ticket.getSource());
 
         holder.destination.setText(ticket.getDestination());
-
+    
+        SimpleDateFormat sdf = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault());
+        
         String deptTime = sdf.format(new Date(ticket.getDeptDate())) + " " + ticket
                 .getDeptTime();
         holder.deptDate.setText(deptTime);
@@ -75,8 +77,6 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
         holder.arrDate.setText(arrTime);
 
         holder.noPassenger.setText(String.valueOf(ticket.getNumberOfPassengers()));
-
-
     }
 
     @Override
@@ -88,7 +88,7 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
         void cancelBooking(int position);
     }
 
-    public class ViewTicketViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewTicketViewHolder extends RecyclerView.ViewHolder {
 
         TextView ticketStatus, ticketPnr, trainNumber, trainName, source, destination, deptDate, arrDate, noPassenger, cancelTicket;
 
@@ -105,7 +105,6 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
             arrDate = itemView.findViewById(R.id.tv_ticket_arrival_time);
             noPassenger = itemView.findViewById(R.id.tv_number_of_passenger);
             cancelTicket = itemView.findViewById(R.id.tv_cancel_ticket);
-
         }
     }
 }

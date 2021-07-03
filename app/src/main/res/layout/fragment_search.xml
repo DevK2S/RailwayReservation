@@ -1,135 +1,130 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".main.SearchFragment">
-
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:layout_width="match_parent"
-        android:layout_height="0dp">
-
-        <ProgressBar
-            android:id="@+id/pb_search"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
-            android:elevation="16dp"
-            android:padding="@dimen/mediumPadding"
-            android:visibility="invisible"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_search_source"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:boxStrokeColor="@color/iconTint"
-            app:boxStrokeErrorColor="@color/errorTint"
-            app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
-            app:errorEnabled="true"
-            app:errorIconTint="@color/errorTint"
-            app:errorTextColor="@color/errorTint"
-            app:startIconDrawable="@drawable/ic_train"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:hint="Enter Source"
-            app:layout_constraintTop_toTopOf="parent">
-
-            <AutoCompleteTextView
-                android:id="@+id/act_source"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_search_destination"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:boxStrokeColor="@color/iconTint"
-            app:boxStrokeErrorColor="@color/errorTint"
-            app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
-            app:errorEnabled="true"
-            app:errorIconTint="@color/errorTint"
-            app:errorTextColor="@color/errorTint"
-            app:startIconDrawable="@drawable/ic_train"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:hint="Enter Destination"
-            app:layout_constraintTop_toBottomOf="@id/til_search_source">
-
-            <AutoCompleteTextView
-                android:id="@+id/act_destination"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/til_search_date"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:focusableInTouchMode="false"
-            android:layout_marginTop="12dp"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
-            app:boxStrokeColor="@color/iconTint"
-            app:boxStrokeErrorColor="@color/errorTint"
-            app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
-            app:endIconMode="clear_text"
-            app:endIconTint="@color/iconTint"
-            app:errorEnabled="true"
-            app:errorIconTint="@color/errorTint"
-            app:errorTextColor="@color/errorTint"
-            app:startIconDrawable="@drawable/ic_date"
-            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:hint="Enter Date"
-            app:layout_constraintTop_toBottomOf="@id/til_search_destination">
-
-            <AutoCompleteTextView
-                android:id="@+id/act_date"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="none" />
-
-
-        </com.google.android.material.textfield.TextInputLayout>
-
-        <Button
-            android:id="@+id/btn_search_train"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="16dp"
-            android:text="Search Trains"
-            app:layout_constraintTop_toBottomOf="@id/til_search_date" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rv_search_train"
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_marginTop="32dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/btn_search_train" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	xmlns:tools="http://schemas.android.com/tools"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	tools:context=".main.SearchFragment">
+	
+	<androidx.constraintlayout.widget.ConstraintLayout
+		android:layout_width="match_parent"
+		android:layout_height="0dp">
+		
+		<ProgressBar
+			android:id="@+id/pb_search"
+			android:layout_width="90dp"
+			android:layout_height="90dp"
+			android:elevation="16dp"
+			android:padding="@dimen/mediumPadding"
+			android:visibility="invisible"
+			app:layout_constraintBottom_toBottomOf="parent"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintHorizontal_bias="0.5"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent" />
+		
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_search_source"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="24dp"
+			android:layout_marginTop="32dp"
+			android:layout_marginEnd="24dp"
+			android:hint="Enter Source"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toTopOf="parent"
+			app:startIconDrawable="@drawable/ic_train">
+			
+			<AutoCompleteTextView
+				android:id="@+id/act_source"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" />
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_search_destination"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="24dp"
+			android:layout_marginTop="12dp"
+			android:layout_marginEnd="24dp"
+			android:hint="Enter Destination"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_search_source"
+			app:startIconDrawable="@drawable/ic_train">
+			
+			<AutoCompleteTextView
+				android:id="@+id/act_destination"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<com.google.android.material.textfield.TextInputLayout
+			android:id="@+id/til_search_date"
+			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:layout_marginStart="24dp"
+			android:layout_marginTop="12dp"
+			android:layout_marginEnd="24dp"
+			android:hint="Enter Date"
+			app:boxStrokeColor="@color/iconTint"
+			app:boxStrokeErrorColor="@color/errorTint"
+			app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+			app:errorEnabled="true"
+			app:errorIconTint="@color/errorTint"
+			app:errorTextColor="@color/errorTint"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_search_destination"
+			app:startIconDrawable="@drawable/ic_date">
+			
+			<AutoCompleteTextView
+				android:id="@+id/act_date"
+				android:layout_width="match_parent"
+				android:layout_height="wrap_content"
+				android:inputType="none" />
+		
+		</com.google.android.material.textfield.TextInputLayout>
+		
+		<Button
+			android:id="@+id/btn_search_train"
+			android:layout_width="wrap_content"
+			android:layout_height="wrap_content"
+			android:layout_marginTop="16dp"
+			android:text="Search Trains"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/til_search_date" />
+		
+		<androidx.recyclerview.widget.RecyclerView
+			android:id="@+id/rv_search_train"
+			android:layout_width="match_parent"
+			android:layout_height="0dp"
+			android:layout_marginTop="32dp"
+			app:layout_constraintEnd_toEndOf="parent"
+			app:layout_constraintStart_toStartOf="parent"
+			app:layout_constraintTop_toBottomOf="@id/btn_search_train" />
+	
+	</androidx.constraintlayout.widget.ConstraintLayout>
 
 
 </androidx.core.widget.NestedScrollView>
