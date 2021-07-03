@@ -9,6 +9,7 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 
 import androidx.annotation.NonNull;
@@ -46,21 +47,23 @@ public class SearchFragment extends Fragment {
 
     private AutoCompleteTextView sourceTextView, destinationTextView, dateTextView;
 
-    private MaterialDatePicker<Long> datePicker;
+	private MaterialDatePicker<Long> datePicker;
 
-    private long searchDate;
+	private long searchDate;
 
-    private ArrayList<TrainModel> trainList;
-	
+	private ArrayList<TrainModel> trainList;
+
 	private RecyclerView recyclerView;
-	
+
 	private ProgressBar progressBar;
 
+	private LinearLayout emptyLayout;
 
-    @Override
-	public View onCreateView (LayoutInflater inflater, ViewGroup container,
-	                          Bundle savedInstanceState) {
-		
+
+	@Override
+	public View onCreateView(LayoutInflater inflater, ViewGroup container,
+							 Bundle savedInstanceState) {
+
 		return inflater.inflate(R.layout.fragment_search, container, false);
 	}
 	
@@ -76,7 +79,8 @@ public class SearchFragment extends Fragment {
 
         navController = Navigation.findNavController(view);
         recyclerView = view.findViewById(R.id.rv_search_train);
-        progressBar = view.findViewById(R.id.pb_search);
+		progressBar = view.findViewById(R.id.pb_search);
+		emptyLayout = view.findViewById(R.id.ll_empty_search_train);
 
         sourceTextInput = view.findViewById(R.id.til_search_source);
         sourceTextView = view.findViewById(R.id.act_source);
@@ -122,8 +126,9 @@ public class SearchFragment extends Fragment {
 		Button searchTrainButton = view.findViewById(R.id.btn_search_train);
 		searchTrainButton.setOnClickListener(v -> {
 			if (validateFields()) {
+				progressBar.setVisibility(View.VISIBLE);
 				searchTrain(sourceTextView.getText().toString(),
-				            destinationTextView.getText().toString());
+						destinationTextView.getText().toString());
 			}
 		});
 		
@@ -229,24 +234,27 @@ public class SearchFragment extends Fragment {
 				                if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
 					                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 						                TrainModel train = snapshot.getValue(TrainModel.class);
-						
-						                if (train.getSource().equals(source) && train
-								                .getDestination().equals(destination) && train
-								                .getDepartureDate() == searchDate) {
-							                trainList.add(train);
-						                }
-					                }
-					
-					                setUpRecyclerView();
-				                }
+
+										if (train.getSource().equals(source) && train
+												.getDestination().equals(destination) && train
+												.getDepartureDate() == searchDate) {
+											trainList.add(train);
+										}
+									}
+
+									setUpRecyclerView();
+								} else {
+									emptyLayout.setVisibility(View.VISIBLE);
+								}
 			                }
 			
 			
 			                @Override
 			                public void onCancelled (@NonNull @NotNull DatabaseError error) {
-				
-				                progressBar.setVisibility(View.INVISIBLE);
-			                }
+
+								progressBar.setVisibility(View.INVISIBLE);
+								emptyLayout.setVisibility(View.VISIBLE);
+							}
 		                });
 	}
 

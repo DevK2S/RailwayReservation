@@ -119,8 +119,8 @@
 		</LinearLayout>
 	
 	</LinearLayout>
-	
-	<ImageButton
+
+    <ImageButton
 		android:id="@+id/ib_train_delete"
 		android:layout_width="40dp"
 		android:layout_height="40dp"
