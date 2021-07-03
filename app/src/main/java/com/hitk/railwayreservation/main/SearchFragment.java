@@ -127,8 +127,8 @@ public class SearchFragment extends Fragment {
 		searchTrainButton.setOnClickListener(v -> {
 			if (validateFields()) {
 				progressBar.setVisibility(View.VISIBLE);
-				searchTrain(sourceTextView.getText().toString(),
-						destinationTextView.getText().toString());
+				searchTrain(sourceTextView.getText().toString().replace(" ", "_"),
+				            destinationTextView.getText().toString().replace(" ", "_"));
 			}
 		});
 		
@@ -141,7 +141,7 @@ public class SearchFragment extends Fragment {
 		StationName[] stationNameValues = StationName.values();
 		String[] stations = new String[stationNameValues.length];
 		for (int i = 0; i < stationNameValues.length; i++) {
-			stations[i] = stationNameValues[i].name();
+			stations[i] = stationNameValues[i].name().replace("_", " ");
 		}
 		ArrayAdapter<String> stationAdapter = new ArrayAdapter<>(requireContext(),
 		                                                         R.layout.item_dropdown, stations);
@@ -228,6 +228,7 @@ public class SearchFragment extends Fragment {
 		                .addListenerForSingleValueEvent(new ValueEventListener() {
 			                @Override
 			                public void onDataChange (@NonNull @NotNull DataSnapshot dataSnapshot) {
+				                emptyLayout.setVisibility(View.INVISIBLE);
 				
 				                progressBar.setVisibility(View.INVISIBLE);
 				
@@ -241,6 +242,10 @@ public class SearchFragment extends Fragment {
 											trainList.add(train);
 										}
 									}
+					                
+					                if (trainList.isEmpty()) {
+						                emptyLayout.setVisibility(View.VISIBLE);
+					                }
 
 									setUpRecyclerView();
 								} else {

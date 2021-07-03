@@ -8,20 +8,18 @@
 	android:paddingVertical="@dimen/smallPadding">
 	
 	<androidx.cardview.widget.CardView
-		android:id="@+id/cardViewHomeItem"
 		android:layout_width="match_parent"
 		android:layout_height="wrap_content"
-		android:padding="16dp"
-		app:cardPreventCornerOverlap="true">
+		android:padding="16dp">
 		
 		<androidx.constraintlayout.widget.ConstraintLayout
+			android:id="@+id/cl_view_balance"
 			android:layout_width="match_parent"
 			android:layout_height="wrap_content"
 			android:background="@drawable/cardborder"
 			android:paddingHorizontal="8dp"
 			android:paddingTop="8dp"
 			android:paddingBottom="16dp">
-			
 			
 			<LinearLayout
 				android:id="@+id/ll_ticket_item"
@@ -33,6 +31,28 @@
 				app:layout_constraintEnd_toEndOf="parent"
 				app:layout_constraintStart_toStartOf="parent"
 				app:layout_constraintTop_toTopOf="parent">
+				
+				<TextView
+					android:id="@+id/tv_payment_status"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:textAlignment="center"
+					android:textSize="@dimen/extraLargeText"
+					android:layout_marginTop="@dimen/smallMargin"
+					android:textStyle="bold"
+					android:textColor="@color/white"
+					tools:text="Payment: COMPLETED" />
+				
+				<TextView
+					android:id="@+id/tv_payment_date"
+					android:layout_width="wrap_content"
+					android:layout_height="match_parent"
+					android:textAlignment="center"
+					android:textSize="@dimen/largeText"
+					android:layout_marginBottom="@dimen/smallMargin"
+					android:textStyle="bold"
+					android:textColor="@color/white"
+					tools:text="Payment Date: 10 Jul, 2021" />
 				
 				<TextView
 					android:id="@+id/tv_ticket_status"
@@ -51,6 +71,7 @@
 					android:layout_marginTop="8dp"
 					android:layout_marginBottom="8dp"
 					android:textAlignment="center"
+					android:textColor="@color/black"
 					android:textSize="@dimen/largeText"
 					tools:text="123456" />
 			
@@ -73,7 +94,7 @@
 					android:layout_height="wrap_content"
 					android:maxLines="1"
 					android:textAlignment="center"
-					android:textColor="@color/colorPrimaryDark"
+					android:textColor="@color/white"
 					android:textSize="@dimen/largeText"
 					tools:text="456789" />
 				
@@ -125,7 +146,7 @@
 						android:layout_gravity="center"
 						android:layout_weight="0.5"
 						android:src="@drawable/ic_arrow_right"
-						app:tint="@color/colorPrimaryDark" />
+						app:tint="@color/white" />
 					
 					
 					<LinearLayout
@@ -160,29 +181,22 @@
 					android:layout_width="match_parent"
 					android:layout_height="wrap_content"
 					android:layout_marginTop="8dp"
-					android:text="No. of Passengers:"
+					android:text="No. of Passengers: 5"
 					android:textAlignment="center"
 					android:textColor="@color/black"
 					android:textSize="@dimen/mediumText" />
+				
+				<TextView
+					android:id="@+id/tv_total_cost"
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:layout_marginTop="8dp"
+					android:text="Total Cost: 5000"
+					android:textAlignment="center"
+					android:textColor="@color/white"
+					android:textSize="@dimen/largeText" />
 			
 			</LinearLayout>
-			
-			<com.google.android.material.button.MaterialButton
-				android:id="@+id/btn_cancel_ticket"
-				android:layout_width="match_parent"
-				android:layout_height="wrap_content"
-				android:layout_marginHorizontal="@dimen/mediumMargin"
-				android:layout_marginTop="16dp"
-				android:gravity="center"
-				android:text="CANCEL TICKET"
-				android:textAllCaps="true"
-				android:backgroundTint="@color/errorTint"
-				android:textColor="@color/white"
-				android:textSize="28sp"
-				app:cornerRadius="10dp"
-				app:layout_constraintEnd_toEndOf="parent"
-				app:layout_constraintStart_toStartOf="parent"
-				app:layout_constraintTop_toBottomOf="@id/ll_train_item" />
 		
 		</androidx.constraintlayout.widget.ConstraintLayout>
 	

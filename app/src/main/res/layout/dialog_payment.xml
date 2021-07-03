@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+	xmlns:app="http://schemas.android.com/apk/res-auto"
+	android:layout_width="match_parent"
+	android:layout_height="match_parent"
+	android:padding="@dimen/mediumPadding">
+	
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btn_pay_in_person"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_margin="@dimen/mediumMargin"
+		android:padding="@dimen/smallPadding"
+		android:text="Pay in Person"
+		android:textSize="@dimen/largeText"
+		app:layout_constraintTop_toTopOf="parent" />
+	
+	<com.google.android.material.textfield.TextInputLayout
+		android:id="@+id/til_credit_card"
+		style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginStart="@dimen/mediumMargin"
+		android:layout_marginTop="@dimen/mediumMargin"
+		android:layout_marginEnd="@dimen/mediumMargin"
+		android:hint="Credit Card Number"
+		app:boxStrokeColor="@color/iconTint"
+		app:boxStrokeErrorColor="@color/errorTint"
+		app:boxStrokeWidthFocused="@dimen/boxStrokeWidthFocused"
+		app:endIconMode="clear_text"
+		app:endIconTint="@color/iconTint"
+		app:errorEnabled="true"
+		app:errorIconTint="@color/errorTint"
+		app:errorTextColor="@color/errorTint"
+		app:hintTextColor="@color/iconTint"
+		app:layout_constraintEnd_toEndOf="parent"
+		app:layout_constraintStart_toStartOf="parent"
+		app:layout_constraintTop_toBottomOf="@id/btn_pay_in_person"
+		app:startIconDrawable="@drawable/ic_credit_card"
+		app:startIconTint="@color/iconTint">
+		
+		<com.google.android.material.textfield.TextInputEditText
+			android:id="@+id/et_credit_card"
+			android:layout_width="match_parent"
+			android:layout_height="wrap_content"
+			android:inputType="phone"
+			android:maxLength="19"/>
+	
+	</com.google.android.material.textfield.TextInputLayout>
+	
+	<com.google.android.material.button.MaterialButton
+		android:id="@+id/btn_pay_now"
+		android:layout_width="match_parent"
+		android:layout_height="wrap_content"
+		android:layout_marginHorizontal="@dimen/mediumMargin"
+		android:padding="@dimen/smallPadding"
+		android:text="Pay Now"
+		android:textSize="@dimen/largeText"
+		app:layout_constraintTop_toBottomOf="@id/til_credit_card" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

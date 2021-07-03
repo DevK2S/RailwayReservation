@@ -38,6 +38,7 @@ import org.jetbrains.annotations.NotNull;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.Locale;
 import java.util.UUID;
 
@@ -165,9 +166,7 @@ public class BookFragment extends Fragment {
 			progressBar.setVisibility(View.VISIBLE);
 			if (validateFields()) {
 				String pnrNumber = createPnrNumber();
-				storeTicket(pnrNumber);
 				updateUserDetails(pnrNumber);
-				updateTrainDetails();
 				navController.navigateUp();
 			}
 		});
@@ -214,8 +213,6 @@ public class BookFragment extends Fragment {
 		                                                   new TypeToken<ArrayList<String>>() { }
 				                                                   .getType());
 		
-		Log.i(TAG, "List " + ticketNumberList.toString());
-		
 		ticketNumberList.add(pnrNumber);
 		
 		String ticketNo = gson.toJson(ticketNumberList);
@@ -224,7 +221,7 @@ public class BookFragment extends Fragment {
 		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_USERS)
 		                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
 		
-		
+		storeTicket(pnrNumber);
 	}
 	
 	
@@ -239,6 +236,14 @@ public class BookFragment extends Fragment {
 	
 	private void storeTicket (String pnrNumber) {
 		
+		boolean paymentMade = false;
+		long paymentDate = 0;
+		
+		if (user.getOutstandingBalance() <= 0) {
+			paymentMade = true;
+			paymentDate = new Date().getTime();
+		}
+		
 		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TICKETS)
 		                .child(pnrNumber).setValue(
 				new TicketModel(pnrNumber, TicketState.BOOKED, train.getNumber(), train.getName(),
@@ -246,8 +251,9 @@ public class BookFragment extends Fragment {
 				                train.getDepartureDate(),
 				                train.getDepartureTime(), train.getArrivalDate(),
 				                train.getArrivalTime(), Integer.parseInt(
-						numberOfPassengerEditText.getText().toString().trim()), totalCost));
+						numberOfPassengerEditText.getText().toString().trim()), totalCost, paymentMade, paymentDate));
 		
+		updateTrainDetails();
 	}
 	
 	

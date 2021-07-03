@@ -23,6 +23,8 @@
 	<color name="darkIconTint">#000000</color>
 	<color name="errorTint">#FF153C</color>
 	
+	<color name="green">#2ABF2A</color>
+	
 	<color name="primaryText">#2699FB</color>
 	<color name="alternativeText">#FFFFFF</color>
 	<color name="titleText">#000000</color>

@@ -3,6 +3,7 @@ package com.hitk.railwayreservation.main;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -56,11 +57,11 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
             holder.cancelTicket.setVisibility(View.GONE);
         }
 
-        holder.ticketPnr.setText(ticket.getPnrNumber());
+        holder.ticketPnr.setText("PNR: " + ticket.getPnrNumber().toUpperCase());
 
         holder.trainNumber.setText(String.valueOf(ticket.getTrainNumber()));
 
-        holder.trainNumber.setText(ticket.getTrainName());
+        holder.trainName.setText(ticket.getTrainName());
 
         holder.source.setText(ticket.getSource());
 
@@ -76,7 +77,7 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
                 .getArrivalTime();
         holder.arrDate.setText(arrTime);
 
-        holder.noPassenger.setText(String.valueOf(ticket.getNumberOfPassengers()));
+        holder.noPassenger.setText("No of Passengers: " + ticket.getNumberOfPassengers());
     }
 
     @Override
@@ -90,8 +91,10 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
 
     public static class ViewTicketViewHolder extends RecyclerView.ViewHolder {
 
-        TextView ticketStatus, ticketPnr, trainNumber, trainName, source, destination, deptDate, arrDate, noPassenger, cancelTicket;
+        TextView ticketStatus, ticketPnr, trainNumber, trainName, source, destination, deptDate, arrDate, noPassenger;
 
+        Button cancelTicket;
+        
         public ViewTicketViewHolder(@NonNull @NotNull View itemView) {
             super(itemView);
 
@@ -104,7 +107,7 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
             deptDate = itemView.findViewById(R.id.tv_ticket_departure_time);
             arrDate = itemView.findViewById(R.id.tv_ticket_arrival_time);
             noPassenger = itemView.findViewById(R.id.tv_number_of_passenger);
-            cancelTicket = itemView.findViewById(R.id.tv_cancel_ticket);
+            cancelTicket = itemView.findViewById(R.id.btn_cancel_ticket);
         }
     }
 }

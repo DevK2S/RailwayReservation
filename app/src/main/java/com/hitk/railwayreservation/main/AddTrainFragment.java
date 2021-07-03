@@ -135,9 +135,11 @@ public class AddTrainFragment extends Fragment {
 		StationName[] sourceStationNameValues = StationName.values();
 		String[] sourceStationNames = new String[sourceStationNameValues.length];
 		for (int i = 0; i < sourceStationNameValues.length; i++) {
-			sourceStationNames[i] = sourceStationNameValues[i].name();
+			sourceStationNames[i] = sourceStationNameValues[i].name().replace("_", " ");
 		}
-		ArrayAdapter<String> sourceStationNameAdapter = new ArrayAdapter<>(requireContext(), R.layout.item_dropdown, sourceStationNames);
+		ArrayAdapter<String> sourceStationNameAdapter = new ArrayAdapter<>(requireContext(),
+		                                                                   R.layout.item_dropdown,
+		                                                                   sourceStationNames);
 		
 		sourceTextView.setAdapter(sourceStationNameAdapter);
 		
@@ -166,9 +168,11 @@ public class AddTrainFragment extends Fragment {
 		StationName[] destinationStationNameValues = StationName.values();
 		String[] destinationStationNames = new String[destinationStationNameValues.length];
 		for (int i = 0; i < destinationStationNameValues.length; i++) {
-			destinationStationNames[i] = destinationStationNameValues[i].name();
+			destinationStationNames[i] = destinationStationNameValues[i].name().replace("_", " ");
 		}
-		ArrayAdapter<String> destinationStationNameAdapter = new ArrayAdapter<>(requireContext(), R.layout.item_dropdown, destinationStationNames);
+		ArrayAdapter<String> destinationStationNameAdapter = new ArrayAdapter<>(requireContext(),
+		                                                                        R.layout.item_dropdown,
+		                                                                        destinationStationNames);
 		
 		destinationTextView.setAdapter(destinationStationNameAdapter);
 		
@@ -444,9 +448,9 @@ public class AddTrainFragment extends Fragment {
 		
 		long trainNumber = Long.parseLong(trainNumberEditText.getText().toString());
 		String trainName = trainNameEditText.getText().toString();
-		String source = sourceTextView.getText().toString();
+		String source = sourceTextView.getText().toString().replace(" ", "_");
 		String deptTime = departureTimeEditText.getText().toString();
-		String destination = destinationTextView.getText().toString();
+		String destination = destinationTextView.getText().toString().replace(" ", "_");
 		String arrTime = arrivalTimeEditText.getText().toString();
 		int numberOfSeats = Integer.parseInt(numberOfSeatsEditText.getText().toString());
 		SeatType seatType = SeatType.valueOf(seatTypeTextView.getText().toString());
@@ -484,7 +488,6 @@ public class AddTrainFragment extends Fragment {
 	
 	
 	private String validateTrainNumber (String trainNumber) {
-		
 		if (trainNumber.trim().isEmpty()) {
 			return "Train Number cannot be empty";
 		} else if (trainNumber.trim().length() != 6) {

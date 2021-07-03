@@ -11,13 +11,15 @@ data class TicketModel(
 	var trainName: String,
 	var source: String,
 	var destination: String,
-	var DeptDate: Long,
-	var DeptTime: String,
-	var ArrivalDate: Long,
-	var ArrivalTime: String,
+	var deptDate: Long,
+	var deptTime: String,
+	var arrivalDate: Long,
+	var arrivalTime: String,
 	var numberOfPassengers: Int,
 	var totalAmount: Double,
+	var paymentMade: Boolean,
+	var paymentDate: Long
 ) : Parcelable {
 
-	constructor() : this("", TicketState.BOOKED, 0, "", "", "", 0, "", 0, "", 0, 0.0)
+	constructor() : this("", TicketState.BOOKED, 0, "", "", "", 0, "", 0, "", 0, 0.0, false, 0)
 }

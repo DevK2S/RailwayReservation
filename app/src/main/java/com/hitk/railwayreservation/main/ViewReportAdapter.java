@@ -44,8 +44,8 @@ public class ViewReportAdapter extends RecyclerView.Adapter<ViewReportAdapter.Vi
 
         holder.trainNumber.setText(String.valueOf(train.getNumber()));
         holder.trainName.setText(train.getName());
-        holder.source.setText(train.getSource());
-        holder.destination.setText(train.getDestination());
+        holder.source.setText(train.getSource().replace("_", " "));
+        holder.destination.setText(train.getDestination().replace("_", " "));
 
 
         String deptTime = sdf.format(new Date(train.getDepartureDate())) + " " + train
@@ -68,7 +68,7 @@ public class ViewReportAdapter extends RecyclerView.Adapter<ViewReportAdapter.Vi
         return trains.size();
     }
 
-    public class ViewReportViewHolder extends RecyclerView.ViewHolder {
+    public static class ViewReportViewHolder extends RecyclerView.ViewHolder {
         TextView trainNumber, trainName, source, destination, deptTime, arrTime, numberOfseats, seatsAvailable;
 
         public ViewReportViewHolder(@NonNull @NotNull View itemView) {

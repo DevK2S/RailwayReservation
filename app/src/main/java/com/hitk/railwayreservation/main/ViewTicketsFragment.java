@@ -25,6 +25,7 @@ import com.hitk.railwayreservation.Constants;
 import com.hitk.railwayreservation.R;
 import com.hitk.railwayreservation.model.TicketModel;
 import com.hitk.railwayreservation.model.TicketState;
+import com.hitk.railwayreservation.model.TrainModel;
 import com.hitk.railwayreservation.model.UserModel;
 
 import org.jetbrains.annotations.NotNull;
@@ -32,8 +33,6 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 
 public class ViewTicketsFragment extends Fragment {
-	
-	private static final String TAG = "ViewTicket Fragment";
 	
 	private final ArrayList<TicketModel> tickets = new ArrayList<>();
 	
@@ -82,6 +81,7 @@ public class ViewTicketsFragment extends Fragment {
 		                .addListenerForSingleValueEvent(new ValueEventListener() {
 			                @Override
 			                public void onDataChange (@NonNull @NotNull DataSnapshot dataSnapshot) {
+				
 				                if (dataSnapshot.exists() && dataSnapshot.hasChildren()) {
 					                for (DataSnapshot snapshot : dataSnapshot.getChildren()) {
 						                String ticketId = snapshot.getKey();
@@ -89,8 +89,11 @@ public class ViewTicketsFragment extends Fragment {
 							                tickets.add(snapshot.getValue(TicketModel.class));
 						                }
 					                }
+					                tickets.sort((o1, o2) -> (int) (o2.getArrivalDate() - o1
+							                .getArrivalDate()));
 					                setUpRecyclerView();
 				                } else {
+					                progressBar.setVisibility(View.INVISIBLE);
 					                emptyLayout.setVisibility(View.VISIBLE);
 				                }
 			                }
@@ -128,6 +131,30 @@ public class ViewTicketsFragment extends Fragment {
 		ticket.setTicketState(TicketState.CANCELLED);
 		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TICKETS)
 		                .child(ticket.getPnrNumber()).setValue(ticket);
+		
+		user.setOutstandingBalance(user.getOutstandingBalance() - ticket.getTotalAmount());
+		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_USERS)
+		                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+		
+		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TRAINS)
+		                .child(String.valueOf(ticket.getTrainNumber())).get()
+		                .addOnCompleteListener(task -> {
+		                	
+			                if (task.isSuccessful() && task.getResult() != null) {
+			                	
+				                TrainModel train = task.getResult().getValue(TrainModel.class);
+				                
+				                if (train != null) {
+					                train.setSeatsAvailable(train.getSeatsAvailable() + ticket
+							                .getNumberOfPassengers());
+					                FirebaseDatabase.getInstance().getReference()
+					                                .child(Constants.FIREBASE_TRAINS)
+					                                .child(String.valueOf(train.getNumber()))
+					                                .setValue(train);
+				                }
+			                }
+		                });
+		
 		viewTicketAdapter.notifyItemChanged(i);
 		progressBar.setVisibility(View.INVISIBLE);
 	}
