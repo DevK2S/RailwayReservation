@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -103,7 +104,7 @@ public class BookFragment extends Fragment {
 		trainNameTextView.setText(train.getName());
 		
 		trainSourceTextView = view.findViewById(R.id.tv_source_station_name);
-		trainSourceTextView.setText("Source : " + train.getSource());
+		trainSourceTextView.setText("Source : " + train.getSource().replace("_", " "));
 		
 		trainDeptLayout = view.findViewById(R.id.ll_departure_date_time);
 		trainDeptDateTextView = view.findViewById(R.id.tv_train_departure_date);
@@ -113,7 +114,7 @@ public class BookFragment extends Fragment {
 		trainDeptTimeTextView.setText("Dept. Time : " + train.getDepartureTime());
 		
 		trainDestinationTextView = view.findViewById(R.id.tv_destination_station_name);
-		trainDestinationTextView.setText("Destination : " + train.getDestination());
+		trainDestinationTextView.setText("Destination : " + train.getDestination().replace("_", " "));
 		
 		trainArrLayout = view.findViewById(R.id.ll_arrival_date_time);
 		trainArrDateTextView = view.findViewById(R.id.tv_train_arrival_date);
@@ -153,9 +154,10 @@ public class BookFragment extends Fragment {
 			public void afterTextChanged (Editable s) {
 				if (validateFields()) {
 					totalCost = train.getFare() * Double.parseDouble(s.toString().trim());
+					totalCostTextView.setVisibility(View.VISIBLE);
 					totalCostTextView.setText("Total Cost : Rs." + totalCost);
 				} else {
-					totalCostTextView.setText("Total Cost : Rs. 0.0");
+					totalCostTextView.setVisibility(View.GONE);
 				}
 			}
 		});
@@ -167,7 +169,10 @@ public class BookFragment extends Fragment {
 			if (validateFields()) {
 				String pnrNumber = createPnrNumber();
 				updateUserDetails(pnrNumber);
+				Toast.makeText(requireContext(), "Tickets Booked Successfully", Toast.LENGTH_SHORT).show();
 				navController.navigateUp();
+			} else {
+				progressBar.setVisibility(View.INVISIBLE);
 			}
 		});
 	}
@@ -184,23 +189,22 @@ public class BookFragment extends Fragment {
 	
 	private boolean validateFields ( ) {
 		
-		String numberOfPassenger = numberOfPassengerEditText.getText().toString();
-		String numberOfPassengerValidation = validateNumberOfPassenger(numberOfPassenger);
-		if (numberOfPassengerValidation == null) {
+		String numberOfPassengers = numberOfPassengerEditText.getText().toString();
+		String numberOfPassengersValidation = validateNumberOfPassengers(numberOfPassengers);
+		if (numberOfPassengersValidation == null) {
 			return true;
 		}
-		numberOfPassengerInputLayout.setError(numberOfPassenger);
+		numberOfPassengerInputLayout.setError(numberOfPassengersValidation);
 		return false;
 	}
 	
 	
-	private String validateNumberOfPassenger (String numberOfPassenger) {
+	private String validateNumberOfPassengers (String numberOfPassengers) {
 		
-		if (numberOfPassenger.trim().isEmpty()) {
-			return "Number of Passengers cannot be empty";
-		}
-		if (Integer.parseInt(numberOfPassenger.trim()) > 10) {
-			return "Number of Passenger cannot be more than 10";
+		if (numberOfPassengers.trim().isEmpty()) {
+			return "Number of passengers cannot be empty";
+		} else if (Integer.parseInt(numberOfPassengers.trim()) > train.getSeatsAvailable()) {
+			return "Number of passengers cannot be more than seats available";
 		}
 		return null;
 	}
@@ -269,8 +273,7 @@ public class BookFragment extends Fragment {
 					                user = snapshot.getValue(UserModel.class);
 				                }
 			                }
-			
-			
+			                
 			                @Override
 			                public void onCancelled (@NonNull @NotNull DatabaseError error) {
 				

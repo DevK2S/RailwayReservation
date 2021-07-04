@@ -241,7 +241,7 @@
 			android:id="@+id/til_address_signup"
 			style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
 			android:layout_width="match_parent"
-			android:layout_height="100dp"
+			android:layout_height="wrap_content"
 			android:layout_marginStart="@dimen/largeMargin"
 			android:layout_marginEnd="@dimen/largeMargin"
 			app:boxStrokeColor="@color/iconTint"
@@ -261,7 +261,7 @@
 			<com.google.android.material.textfield.TextInputEditText
 				android:id="@+id/et_address_signup"
 				android:layout_width="match_parent"
-				android:layout_height="match_parent"
+				android:layout_height="75dp"
 				android:hint="@string/address"
 				android:inputType="textLongMessage|textMultiLine" />
     

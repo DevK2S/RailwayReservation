@@ -54,8 +54,8 @@ public class RemoveTrainAdapter
 
 		holder.trainNumber.setText(String.valueOf(train.getNumber()));
 		holder.trainName.setText(train.getName());
-		holder.source.setText(train.getSource());
-		holder.destination.setText(train.getDestination());
+		holder.source.setText(train.getSource().replace("_", " "));
+		holder.destination.setText(train.getDestination().replace("_", " "));
 
 
 		String deptTime = sdf.format(new Date(train.getDepartureDate())) + " " + train

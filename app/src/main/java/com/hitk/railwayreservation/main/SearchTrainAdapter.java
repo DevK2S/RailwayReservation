@@ -53,8 +53,8 @@ public class SearchTrainAdapter
 
         holder.trainNumber.setText(String.valueOf(train.getNumber()));
         holder.trainName.setText(train.getName());
-        holder.source.setText(train.getSource());
-        holder.destination.setText(train.getDestination());
+        holder.source.setText(train.getSource().replace("_", " "));
+        holder.destination.setText(train.getDestination().replace("_", " "));
 
         SimpleDateFormat sdf = new SimpleDateFormat("MMM dd, yyyy", Locale.getDefault());
 

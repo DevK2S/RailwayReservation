@@ -33,6 +33,7 @@ import com.google.gson.reflect.TypeToken;
 import com.hitk.railwayreservation.Constants;
 import com.hitk.railwayreservation.R;
 import com.hitk.railwayreservation.model.TicketModel;
+import com.hitk.railwayreservation.model.TicketState;
 import com.hitk.railwayreservation.model.UserModel;
 
 import org.jetbrains.annotations.NotNull;
@@ -216,7 +217,8 @@ public class ViewBalanceFragment extends Fragment {
 		
 	}
 	
-	private void setUpRecyclerView() {
+	
+	private void setUpRecyclerView ( ) {
 		
 		viewBalanceAdapter = new ViewBalanceAdapter(requireContext(), tickets);
 		recyclerView.addItemDecoration(
@@ -251,9 +253,20 @@ public class ViewBalanceFragment extends Fragment {
 							                tickets.add(snapshot.getValue(TicketModel.class));
 						                }
 					                }
-					                tickets.sort((o1, o2) -> Boolean
-							                .compare(o1.getPaymentMade(), o2.getPaymentMade()));
-					                
+					                tickets.sort((o1, o2) -> {
+					                	if (o1.getPaymentMade() == o2.getPaymentMade()) {
+							                if (o1.getTicketState() == TicketState.BOOKED && o2.getTicketState() == TicketState.BOOKED) {
+								                return (int) (o2.getTotalAmount() - o1.getTotalAmount());
+							                } else if (o1.getTicketState() == TicketState.BOOKED) {
+								                return -1;
+							                } else {
+								                return 1;
+							                }
+						                } else {
+							                return Boolean.compare(o1.getPaymentMade(), o2.getPaymentMade());
+						                }
+					                });
+					
 					                setUpRecyclerView();
 				                } else {
 					                progressBar.setVisibility(View.INVISIBLE);

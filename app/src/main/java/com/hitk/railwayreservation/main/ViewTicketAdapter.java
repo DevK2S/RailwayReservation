@@ -63,9 +63,9 @@ class ViewTicketAdapter extends RecyclerView.Adapter<ViewTicketAdapter.ViewTicke
 
         holder.trainName.setText(ticket.getTrainName());
 
-        holder.source.setText(ticket.getSource());
+        holder.source.setText(ticket.getSource().replace("_", " "));
 
-        holder.destination.setText(ticket.getDestination());
+        holder.destination.setText(ticket.getDestination().replace("_", " "));
     
         SimpleDateFormat sdf = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault());
         

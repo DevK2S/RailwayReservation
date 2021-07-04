@@ -54,27 +54,40 @@ class ViewBalanceAdapter extends RecyclerView.Adapter<ViewBalanceAdapter.ViewBal
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("dd MMM, yyyy", Locale.getDefault());
 		
-		if (ticket.getPaymentMade()) {
+		if (ticket.getTicketState() == TicketState.CANCELLED) {
 			holder.constraintLayout.setBackgroundColor(
 					context.getResources().getColor(R.color.green, context.getTheme()));
 			
+			if (ticket.getPaymentMade()) {
+				holder.paymentStatus.setVisibility(View.VISIBLE);
+				holder.paymentStatus.setText("Payment: REFUNDED");
+			} else {
+				holder.paymentStatus.setVisibility(View.GONE);
+			}
+			holder.paymentDate.setVisibility(View.GONE);
+			
+			holder.ticketStatus.setText("CANCELLED");
+		} else if (ticket.getPaymentMade()) {
+			holder.constraintLayout.setBackgroundColor(
+					context.getResources().getColor(R.color.green, context.getTheme()));
+			
+			holder.paymentStatus.setVisibility(View.VISIBLE);
 			holder.paymentStatus.setText("Payment: COMPLETED");
 			
 			holder.paymentDate.setVisibility(View.VISIBLE);
 			holder.paymentDate.setText(sdf.format(new Date(ticket.getPaymentDate())));
+			
+			holder.ticketStatus.setText("BOOKED");
 		} else {
 			holder.constraintLayout.setBackgroundColor(
 					context.getResources().getColor(R.color.errorTint, context.getTheme()));
 			
+			holder.paymentStatus.setVisibility(View.VISIBLE);
 			holder.paymentStatus.setText("Payment: DUE");
 			
 			holder.paymentDate.setVisibility(View.GONE);
-		}
-		
-		if (ticket.getTicketState() == TicketState.BOOKED) {
+			
 			holder.ticketStatus.setText("BOOKED");
-		} else {
-			holder.ticketStatus.setText("CANCELLED");
 		}
 		
 		holder.ticketPnr.setText("PNR: " + ticket.getPnrNumber().toUpperCase());
@@ -83,9 +96,9 @@ class ViewBalanceAdapter extends RecyclerView.Adapter<ViewBalanceAdapter.ViewBal
 		
 		holder.trainName.setText(ticket.getTrainName());
 		
-		holder.source.setText(ticket.getSource());
+		holder.source.setText(ticket.getSource().replace("_", " "));
 		
-		holder.destination.setText(ticket.getDestination());
+		holder.destination.setText(ticket.getDestination().replace("_", " "));
 		
 		
 		String deptTime = sdf.format(new Date(ticket.getDeptDate())) + " " + ticket.getDeptTime();

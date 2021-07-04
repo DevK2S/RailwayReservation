@@ -1,5 +1,6 @@
 package com.hitk.railwayreservation.main;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -89,8 +90,15 @@ public class ViewTicketsFragment extends Fragment {
 							                tickets.add(snapshot.getValue(TicketModel.class));
 						                }
 					                }
-					                tickets.sort((o1, o2) -> (int) (o2.getArrivalDate() - o1
-							                .getArrivalDate()));
+					                tickets.sort((o1, o2) -> {
+					                    if (o1.getTicketState() == TicketState.BOOKED && o2.getTicketState() == TicketState.BOOKED) {
+					                    	return (int) (o2.getArrivalDate() - o1.getArrivalDate());
+					                    } else if (o1.getTicketState() == TicketState.BOOKED) {
+					                    	return -1;
+					                    } else {
+					                    	return 1;
+					                    }
+					                });
 					                setUpRecyclerView();
 				                } else {
 					                progressBar.setVisibility(View.INVISIBLE);
@@ -125,38 +133,52 @@ public class ViewTicketsFragment extends Fragment {
 	
 	private void cancelBooking (int i) {
 		
-		progressBar.setVisibility(View.VISIBLE);
-		
 		TicketModel ticket = tickets.get(i);
-		ticket.setTicketState(TicketState.CANCELLED);
-		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TICKETS)
-		                .child(ticket.getPnrNumber()).setValue(ticket);
 		
-		user.setOutstandingBalance(user.getOutstandingBalance() - ticket.getTotalAmount());
-		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_USERS)
-		                .child(FirebaseAuth.getInstance().getCurrentUser().getUid()).setValue(user);
+		AlertDialog.Builder builder = new AlertDialog.Builder(requireContext());
 		
-		FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TRAINS)
-		                .child(String.valueOf(ticket.getTrainNumber())).get()
-		                .addOnCompleteListener(task -> {
-		                	
-			                if (task.isSuccessful() && task.getResult() != null) {
-			                	
-				                TrainModel train = task.getResult().getValue(TrainModel.class);
-				                
-				                if (train != null) {
-					                train.setSeatsAvailable(train.getSeatsAvailable() + ticket
-							                .getNumberOfPassengers());
-					                FirebaseDatabase.getInstance().getReference()
-					                                .child(Constants.FIREBASE_TRAINS)
-					                                .child(String.valueOf(train.getNumber()))
-					                                .setValue(train);
+		builder.setTitle("Cancel Booking");
+		builder.setMessage(
+				"Are you sure you want to cancel booking for PNR Number: " + ticket.getPnrNumber().toUpperCase());
+		
+		builder.setNegativeButton("No", (dialog, which) -> dialog.dismiss());
+		
+		builder.setPositiveButton("Yes", (dialog, which) -> {
+			progressBar.setVisibility(View.VISIBLE);
+			
+			ticket.setTicketState(TicketState.CANCELLED);
+			FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TICKETS)
+			                .child(ticket.getPnrNumber()).setValue(ticket);
+			
+			user.setOutstandingBalance(user.getOutstandingBalance() - ticket.getTotalAmount());
+			FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_USERS)
+			                .child(FirebaseAuth.getInstance().getCurrentUser().getUid())
+			                .setValue(user);
+			
+			FirebaseDatabase.getInstance().getReference().child(Constants.FIREBASE_TRAINS)
+			                .child(String.valueOf(ticket.getTrainNumber())).get()
+			                .addOnCompleteListener(task -> {
+				
+				                if (task.isSuccessful() && task.getResult() != null) {
+					
+					                TrainModel train = task.getResult().getValue(TrainModel.class);
+					
+					                if (train != null) {
+						                train.setSeatsAvailable(train.getSeatsAvailable() + ticket
+								                .getNumberOfPassengers());
+						                FirebaseDatabase.getInstance().getReference()
+						                                .child(Constants.FIREBASE_TRAINS)
+						                                .child(String.valueOf(train.getNumber()))
+						                                .setValue(train);
+					                }
 				                }
-			                }
-		                });
+			                });
+			dialog.dismiss();
+			viewTicketAdapter.notifyItemChanged(i);
+			progressBar.setVisibility(View.INVISIBLE);
+		});
 		
-		viewTicketAdapter.notifyItemChanged(i);
-		progressBar.setVisibility(View.INVISIBLE);
+		builder.show();
 	}
 	
 	
